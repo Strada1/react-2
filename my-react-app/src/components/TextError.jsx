@@ -1,4 +1,4 @@
-function Error(props) {
+function TextError(props) {
   const text = props?.value;
   const reg = /[^a-z]/i;
   return (
@@ -10,4 +10,4 @@ function Error(props) {
   );
 }
 
-export default Error;
+export default TextError;
