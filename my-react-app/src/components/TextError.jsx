@@ -1,11 +1,10 @@
-function TextError(props) {
-  const text = props?.value;
+function TextError({ value }) {
   const reg = /[^a-z]/i;
   return (
     <ul className="genderize__error">
-      {text.match(reg) && <li>В строке неподходящие символы</li>}
-      {text.length < 2 && <li>Недостаточно символов</li>}
-      {text.length > 29 && <li>Слишком много символов</li>}
+      {value.match(reg) && <li>В строке неподходящие символы</li>}
+      {value.length < 2 && <li>Недостаточно символов</li>}
+      {value.length > 29 && <li>Слишком много символов</li>}
     </ul>
   );
 }

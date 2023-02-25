@@ -1,10 +1,10 @@
-function TextInput(props) {
+function TextInput({ className, onChange, value }) {
   return (
     <input
       type="text"
-      className={props?.className}
-      onChange={props?.onChange}
-      value={props?.value}
+      className={className}
+      onChange={onChange}
+      value={value}
     />
   );
 }

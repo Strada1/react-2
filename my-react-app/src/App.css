@@ -17,8 +17,11 @@
   border: 1px gray solid;
   padding: 4px;
   border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   
+}
+.genderize__form li{
+  list-style-position: inside;
 }
 .genderize__input{
   font-size: 20px;
@@ -28,6 +31,6 @@
   color: rgba(179, 0, 0, 0.838);
   text-align: left;
 }
-.genderize__output span{
+.genderize__output p{
   font-weight: bold;
 }

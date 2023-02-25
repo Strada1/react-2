@@ -1,11 +1,6 @@
 /* eslint-disable react/button-has-type */
-function Button(props) {
-  const btn = (
-    <button className={props?.className}>
-      {props?.text}
-    </button>
-  );
-  return btn;
+function Button({ className, text }) {
+  return <button className={className}>{text}</button>;
 }
 
 export default Button;
