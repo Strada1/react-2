@@ -1,0 +1,51 @@
+.result {
+    height: 50vh;
+}
+
+.result__title {
+    letter-spacing: 0.063em;
+    font-size: 1.75em;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.result__text-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.4;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    background-color: rgba(5, 25, 55, 0.1);
+    box-shadow: 10px 10px 14px 1px rgb(0 0 0 / 20%);
+    padding: 17px 8px 10px 8px;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 35px;
+    min-width: 10vw;
+    min-height: 10vh;
+    max-width: 40vw;
+    max-height: 60vh;
+}
+
+.result__text-output {
+    text-align: center;
+    letter-spacing: 0.063em;
+    font-size: 1.45em;
+    overflow: hidden;
+    margin-bottom: 7px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.genderize-male {
+    background-color: rgba(11, 72, 65, 0.25)
+}
+
+.genderize-female {
+    background-color: rgba(143, 34, 140, 0.25)
+}
+
+.genderize-warn {
+    background-color: rgba(253, 0, 46, 0.25)
+}

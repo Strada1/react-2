@@ -1,0 +1,15 @@
+@media (max-width: 550px) {
+    .form {
+        width: auto;
+    }
+
+    .title {
+        font-size: 2.25em;
+    }
+
+    .result__title,
+    .result__text-output {
+        font-size: 1.25em;
+        min-width: 50%;
+    }
+}

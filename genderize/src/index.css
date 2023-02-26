@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("./styles/reset.css");
+
+:root {
+  --color-white: #fff;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-white);
+}
+
+input::placeholder {
+  text-transform: uppercase;
+}
