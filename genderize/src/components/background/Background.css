@@ -1,0 +1,23 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+        to right top,
+        #321f2a,
+        #41253b,
+        #4e2b4f,
+        #583466,
+        #5c3e80,
+        #534f97,
+        #3f60ad,
+        #0071c1,
+        #0087c9,
+        #009bc7,
+        #00acbf,
+        #24bcb3
+    );
+}
