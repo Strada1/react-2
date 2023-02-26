@@ -1,0 +1,30 @@
+.btn {
+    height: 40px;
+    font-size: 20px;
+}
+
+input {
+    font-size: 20px;
+    width: 200px;
+    height: 40px;
+    margin-right: 30px;
+}
+
+.result {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 180px;
+}
