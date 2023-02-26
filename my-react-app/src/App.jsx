@@ -1,16 +1,14 @@
-//import reactLogo from './assets/react.svg';
 import React from 'react';
-import Welcome from './Component_1';
-//import { useState } from 'react';
 import './App.css';
+import TextInput from './TextInput';
+import Button from './Button';
 
-function App() {
+function Main() {
     return (
-        <div>
-            <Welcome className="blue" name="Иван" but="buttonb" />
-            <Welcome className="red" name="Таня" but="buttonr" />
-        </div>
+        <form>
+            <TextInput />
+            <Button />
+        </form>
     );
 }
-
-export default App;
+export default Main;
