@@ -1,5 +1,5 @@
-export function Input() {
-  return (
-    <input id="firstNumber" type="text" />
-  )
-}
+export function Input(props) {
+   return (
+    <input id="name" type="text" value={props.value} onChange={props.onChange}/>
+   )
+ }
