@@ -1,5 +1,6 @@
 function Button() {
-    return <button className="btn">Click</button>;
+    const button = <button className="btn">Click</button>;
+    return button;
 }
 
 export default Button;
