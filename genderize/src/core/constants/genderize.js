@@ -44,7 +44,6 @@ const uiGenderize = {
 
 const genderize = {
   serverUrl: 'https://api.genderize.io',
-  nameRegex: /^[а-яА-ЯёЁa-zA-Z]+$/,
 };
 
 export { uiGenderize, genderize };

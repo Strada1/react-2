@@ -4,6 +4,8 @@ class CustomError extends Error {
     this.name = this.constructor.name;
   }
 
+  static nameRegex = /^(?=.{2,20}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
+
   static ERROR = {
     INCORRECT_NAME: 'Please enter a correct name.',
     NOT_FOUND: 'Oops, we can\'t find a match',
