@@ -8,10 +8,11 @@ function Form({
     children: { input, button },
   },
   onSubmit,
+  onInput,
 }) {
   return (
     <form className={className} onSubmit={onSubmit}>
-      <TextInput parameters={input} />
+      <TextInput parameters={input} onInput={onInput} />
       <Button parameters={button} />
     </form>
   );

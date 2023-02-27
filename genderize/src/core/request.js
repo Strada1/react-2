@@ -7,7 +7,7 @@ const sendRequest = async (url) => {
     return await response.json();
   } catch (error) {
     if (error instanceof Error) CustomError.logMyErrors(error.message);
-    return error.message;
+    return error;
   }
 };
 
