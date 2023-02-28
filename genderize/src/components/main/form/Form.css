@@ -27,3 +27,7 @@
     width: 280px;
     letter-spacing: 0.094em;
 }
+
+.input-error {
+    color: rgb(255 174 249);
+}

@@ -3,6 +3,7 @@ function TextInput({
     type, className, placeholder, name,
   },
   onInput,
+  value,
 }) {
   return (
     <input
@@ -11,6 +12,7 @@ function TextInput({
       placeholder={placeholder}
       name={name}
       onInput={onInput}
+      value={value}
     />
   );
 }

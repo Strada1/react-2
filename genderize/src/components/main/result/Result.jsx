@@ -1,3 +1,4 @@
+import CustomError from '../../../core/error';
 import './Result.css';
 
 function Result({
@@ -5,7 +6,6 @@ function Result({
     className,
     children: { title, block, output },
   },
-  error,
   data: { name, gender },
 }) {
   const getResultData = () => {
@@ -13,10 +13,10 @@ function Result({
       genderize, warn, male, female,
     } = output.options;
     const data = {
-      text: !error && name ? `${name} is ${gender}` : error,
+      text: gender ? `${name} is ${gender}` : CustomError.ERROR.NOT_FOUND,
       className: block.className,
     };
-    if (error) {
+    if (!gender) {
       data.className += ` ${genderize}-${warn}`;
       return data;
     }
@@ -26,7 +26,7 @@ function Result({
 
   const data = getResultData();
 
-  const resultBlock = error || name
+  const resultBlock = name
     ? <div className={data.className}><span className={output.className}>{data.text}</span></div>
     : <div className={block.className} />;
 

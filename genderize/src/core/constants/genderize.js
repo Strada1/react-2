@@ -17,6 +17,10 @@ const uiGenderize = {
         placeholder: 'Type any name',
         name: 'name',
       },
+      inputError: {
+        className: 'input-error',
+        text: 'Please enter a correct name.',
+      },
     },
   },
   result: {
@@ -44,6 +48,7 @@ const uiGenderize = {
 
 const genderize = {
   serverUrl: 'https://api.genderize.io',
+  nameRegex: /^(?=.{3,20}$)[a-z]+(?:['_.\s][a-z]+)*$/i,
 };
 
 export { uiGenderize, genderize };
