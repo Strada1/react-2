@@ -8,7 +8,6 @@ class Main extends React.Component {
         this.state = {
             value: '',
             nameLength: null,
-            eventForm: false,
             error: null,
             isLoaded: false,
             data: [],
@@ -23,14 +22,13 @@ class Main extends React.Component {
             value: event.target.value,
             nameLength: event.target.value.length,
         });
+        console.log(event);
     }
 
     async handleSubmit(event) {
         event.preventDefault();
 
-        this.setState({
-            isLoaded: true,
-        });
+        console.log(this.state.isLoaded);
 
         const firstName = this.state.value;
         const serverUrl = 'https://api.genderize.io';
@@ -41,13 +39,22 @@ class Main extends React.Component {
             const response = await fetch(url);
             const data = await response.json();
             if (this.state.nameLength <= invalidСharacters) {
+                this.setState({
+                    isLoaded: true,
+                });
                 throw new SyntaxError('Данные некорректны');
             }
             if (response.ok) {
+                if (!data.gender) {
+                    throw new SyntaxError('Введите имя латиницей ');
+                }
                 this.setState({
                     isLoaded: true,
                     data: data,
+                    error: null,
                 });
+
+                console.log(this.state.data);
             }
         } catch (error) {
             this.setState({
@@ -64,6 +71,8 @@ class Main extends React.Component {
     render() {
         const isLoaded = this.state.isLoaded;
         const error = this.state.error;
+        const gender = this.state.data.gender;
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -75,17 +84,17 @@ class Main extends React.Component {
                         placeholder="Введите имя"
                     />
                     <Button />
-
-                    {isLoaded === true && error === null && (
-                        <div>
-                            {this.state.data.name} is {this.state.data.gender}
-                        </div>
-                    )}
-
-                    {isLoaded === true && error !== null && (
-                        <div style={{ color: 'red' }}>{this.state.error}</div>
-                    )}
                 </form>
+
+                {isLoaded && error === null && gender && (
+                    <div>
+                        {this.state.data.name} is {this.state.data.gender}
+                    </div>
+                )}
+
+                {isLoaded && error !== null && (
+                    <div style={{ color: 'red' }}>{this.state.error}</div>
+                )}
             </div>
         );
     }
