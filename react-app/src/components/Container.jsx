@@ -41,6 +41,7 @@ export default function container() {
       <Title text="Определение пола человека по его имени" />
       <Form handleSubmit={handleSubmit} name={name} changeName={changeName} />
       <Result
+        stateName={name}
         sex={request.gender}
         name={request.name}
         probability={request.probability}

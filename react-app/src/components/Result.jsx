@@ -1,4 +1,6 @@
 import React from "react";
+import ResultSuccess from "./ResultSuccess";
+import ResultError from "./ResultError";
 import "./style.css";
 
 export default function result({ name, sex, probability }) {
@@ -7,13 +9,19 @@ export default function result({ name, sex, probability }) {
     return str.length > 1 ? str.slice(2, 4) : (str = str + "00");
   }
 
-  return (
-    <div className="result">
-      {sex
-        ? `${name} is ${sex} with ${convertToPercents(
-            probability
-          )}% probability`
-        : "Пол не определен"}
-    </div>
-  );
+  function checkNamesLength(inputName) {
+    console.log(sex);
+    return inputName == undefined || inputName.length > 2 ? (
+      <ResultSuccess
+        name={name}
+        sex={sex}
+        probability={probability}
+        convertToPercents={convertToPercents}
+      />
+    ) : (
+      <ResultError />
+    );
+  }
+
+  return <div className="result">{checkNamesLength(name)}</div>;
 }
