@@ -1,10 +1,10 @@
 import React from 'react'
-import Form from './Form'
+import NameForm from './Form'
 
 export default function Wrapper() {
 	return (
 		<div className='wrapper'>
-				<Form />
+				<NameForm />
 		</div>
 	)
 }
