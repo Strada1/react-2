@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import CheckInputFalse from './CheckInput';
 
-const serverUrl = 'https://api.genderize.io';
-
-
 export default class Button extends Component {
     constructor() {
         super();
         this.state = {
             name: '',
             gender: '',
-            requestName: ''
+            requestName: '',
+            isValid: true,
         }
     }
     
@@ -22,37 +20,55 @@ export default class Button extends Component {
     }
     
     getResponse = (link, name) => {
-        try{
-            fetch(`${link}?name=${name}`)
-            .then(response => response.json())
-            .then(res => {
-                let gender = res.gender;
-                let name = res.name;
-                this.setState({
-                    gender: gender,
-                    requestName: name,
-                })
-            });
-        } catch{
-            alert('Error')
+        if(name.length <= 3) {
+            this.setState({
+                isValid: false,
+                gender: '',
+            })
+        } else {
+            try{
+                fetch(`${link}?name=${name}`)
+                .then(response => response.json())
+                .then(res => {
+                    let gender = res.gender;
+                    let name = res.name;
+                    this.setState({
+                        gender: gender,
+                        requestName: name,
+                        isValid: true,
+                    })
+                });
+            } catch{
+                alert('Error')
+            }
         }
     } 
 
-    btnHandler = () => {
+    btnHandler = (event) => {
+        event.preventDefault();
+        const serverUrl = 'https://api.genderize.io';
         let element = this.state.name;
         this.getResponse(serverUrl, element);
+        this.setState({
+            name: ''
+        })
     }
 
     render() {
+        const name = this.state.name;
+        const valid = this.state.isValid;
+        const gender = this.state.gender;
+        const request = this.state.requestName;
+
         return (
-        <div>
-            <input onChange={this.inpHandler} value={this.state.name} type="text" placeholder='Type your name'/>
-            <CheckInputFalse name = {this.state.requestName} gender = {this.state.gender}/>
-            <button onClick={this.btnHandler}>Button</button>
+        <form onSubmit={this.btnHandler}>
+            <input onChange={this.inpHandler} value={name} type="text" placeholder='Type your name'/>
+            <CheckInputFalse name = {valid}/>
+            <button>Button</button>
             <div>
-                <p style = {{visibility: !this.state.gender ? "hidden" : "visible"}}>The gender of {this.state.requestName} is {this.state.gender}</p>
+                <p style = {{visibility: !gender ? "hidden" : "visible"}}>The gender of {request} is {gender}</p>
             </div>
-        </div>
+        </form>
         )
     }
 }
