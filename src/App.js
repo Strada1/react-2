@@ -1,11 +1,11 @@
 import React from 'react';
+import Cmain from './Cmain';
+
+
 
 function App() {
   return (
-    <div className="App">
-
-
-    </div>
+    <Cmain />
   );
 }
 
