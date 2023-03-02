@@ -1,6 +1,6 @@
 import './Header.css';
 
-function Header({ parameters: { text, className } }) {
+function Header({ text, className }) {
   return (
     <header>
       <h1 className={className}>{text}</h1>

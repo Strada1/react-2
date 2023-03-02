@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <Background />
-      <Header parameters={uiGenderize.h1} />
-      <Main parameters={uiGenderize} />
+      <Header {...uiGenderize.h1} />
+      <Main {...uiGenderize} />
     </>
   );
 }

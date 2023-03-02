@@ -1,5 +1,5 @@
-function InputError({ className, children }) {
-  return <div className={className}>{children}</div>;
+function InputError({ className, text }) {
+  return <div className={className}>{text}</div>;
 }
 
 export default InputError;

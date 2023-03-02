@@ -8,7 +8,7 @@ import TextInput from './form/TextInput';
 import Button from './form/Button';
 import InputError from './form/InputError';
 
-function Main({ parameters: { form, result } }) {
+function Main({ form, result }) {
   const [inputValue, setInputValue] = useState('');
   const [validate, setValidate] = useState(true);
   const [data, setData] = useState({ gender: null, name: null });
@@ -30,11 +30,7 @@ function Main({ parameters: { form, result } }) {
 
   useEffect(
     () => {
-      if (debouncedValue !== '' && !debouncedValue.match(genderize.nameRegex)) {
-        setValidate(false);
-      } else {
-        setValidate(true);
-      }
+      debouncedValue !== '' && !debouncedValue.match(genderize.nameRegex) ? setValidate(false) : setValidate(true);
     },
     [debouncedValue],
   );
@@ -44,11 +40,11 @@ function Main({ parameters: { form, result } }) {
   return (
     <main>
       <Form className={form.className} onSubmit={handleSubmit}>
-        <TextInput parameters={input} onInput={handleValue} value={inputValue} />
-        {!validate && <InputError className={inputError.className}>{inputError.text}</InputError>}
-        <Button parameters={button} />
+        <TextInput {...{ ...input, onInput: handleValue, value: inputValue }} />
+        {!validate && <InputError {...inputError} />}
+        <Button {...button} />
       </Form>
-      <Result parameters={result} data={data} />
+      <Result {...{ ...result, gender: data.gender, name: data.name }} />
     </main>
   );
 }

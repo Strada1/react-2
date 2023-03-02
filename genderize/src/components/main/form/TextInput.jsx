@@ -1,9 +1,5 @@
 function TextInput({
-  parameters: {
-    type, className, placeholder, name,
-  },
-  onInput,
-  value,
+  type, className, placeholder, name, onInput, value,
 }) {
   return (
     <input

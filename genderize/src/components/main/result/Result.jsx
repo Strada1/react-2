@@ -2,11 +2,9 @@ import CustomError from '../../../core/error';
 import './Result.css';
 
 function Result({
-  parameters: {
-    className,
-    children: { title, block, output },
-  },
-  data: { name, gender },
+  className,
+  children: { title, block, output },
+  name, gender,
 }) {
   const getResultData = () => {
     const {
