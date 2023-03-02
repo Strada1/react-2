@@ -8,7 +8,7 @@ export default function Cbutton(props) {
 	} */
 	return (
 
-		<button onClick={props.onClick} value="Отправить" className='button' >
+		<button onClick={props.onClick} value="Отпрaвить" className='button' >
 			Отправить
 		</button>
 
