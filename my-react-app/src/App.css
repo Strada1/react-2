@@ -4,34 +4,3 @@
     padding: 2rem;
     text-align: center;
 }
-
-.blue {
-    color: blue;
-}
-
-.red {
-    color: red;
-}
-
-.buttonb {
-    background-color: blue;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    margin: 10px;
-    width: 70px;
-    height: 70px;
-}
-.buttonr {
-    background-color: red;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    margin: 10px;
-    width: 140px;
-    height: 140px;
-}
