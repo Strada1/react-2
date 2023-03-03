@@ -59,7 +59,6 @@ function App() {
         priority='high'
         setTodos={setHighPriorityTodos}
         todos={filteredHighPriorityTodos}
-        anotherPriorityTodos={lowPriorityTodos}
         categories={categories}
         selectedCategorie={selectedCategorie}
         setSelectedCategorie={setSelectedCategorie}
@@ -68,7 +67,6 @@ function App() {
         priority={"low"}
         setTodos={setLowPriorityTodos}
         todos={filteredLowPriorityTodos}
-        anotherPriorityTodos={highPriorityTodos}
         categories={categories}
         selectedCategorie={selectedCategorie}
         setSelectedCategorie={setSelectedCategorie}

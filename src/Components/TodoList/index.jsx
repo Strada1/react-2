@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import Input from "../Input";
 import Title from "../Title";
 import TodoItem from "../TodoItem";
@@ -21,7 +21,7 @@ const TodoList = ({
     e.preventDefault();
     if (inputValue.trim() === "") return alert("Enter name");
     const newTodo = {
-      id: Date().now(),
+      id: uuidv4(),
       completed: false,
       title: inputValue,
       priority,
