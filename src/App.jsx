@@ -3,6 +3,7 @@ import "./App.css";
 import TodoList from "./Components/TodoList";
 import {
   getTodosFromLocalStorage,
+  localStorageRemove,
   saveTodosToLocalStorage,
 } from "./helpers/localStorage";
 
@@ -16,7 +17,7 @@ function App() {
   useEffect(() => {
     try {
       const data = getTodosFromLocalStorage("todos");
-      if (data) {
+      if (data && data.length > 0) {
         setHighPriorityTodos(data.filter((task) => task.priority === "high"));
         setLowPriorityTodos(data.filter((task) => task.priority === "low"));
       }
@@ -28,6 +29,8 @@ function App() {
   useEffect(() => {
     if (highPriorityTodos.length || lowPriorityTodos.length) {
       saveTodosToLocalStorage([...highPriorityTodos, ...lowPriorityTodos]);
+    } else {
+      localStorage.removeItem("todos");
     }
   }, [highPriorityTodos, lowPriorityTodos]);
   const filterTodos = (todos) => {
@@ -62,6 +65,7 @@ function App() {
         categories={categories}
         selectedCategorie={selectedCategorie}
         setSelectedCategorie={setSelectedCategorie}
+        selectedFilter={selectedFilter}
       />
       <TodoList
         priority={"low"}
@@ -70,6 +74,7 @@ function App() {
         categories={categories}
         selectedCategorie={selectedCategorie}
         setSelectedCategorie={setSelectedCategorie}
+        selectedFilter={selectedFilter}
       />
     </div>
   );

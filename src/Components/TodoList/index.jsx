@@ -11,6 +11,7 @@ const TodoList = ({
   categories,
   selectedCategorie,
   setSelectedCategorie,
+  selectedFilter,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
@@ -42,8 +43,8 @@ const TodoList = ({
     setTodos(newTodos);
   };
   const handleDeleteClick = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+    // const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -71,9 +72,11 @@ const TodoList = ({
           />
         ))}
       {todos.length === 0 && (
-        <div>No {priority === "low" ? "" : "important"} todos right now!</div>
+        <div>
+          Нет {priority === "low" ? "" : "важных"} дел во вкладке{" "}
+          {selectedFilter}
+        </div>
       )}
-      {!todos && <span>no todos</span>}
     </div>
   );
 };
