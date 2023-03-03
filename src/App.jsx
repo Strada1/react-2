@@ -30,7 +30,7 @@ function App() {
     if (highPriorityTodos.length || lowPriorityTodos.length) {
       saveTodosToLocalStorage([...highPriorityTodos, ...lowPriorityTodos]);
     } else {
-      localStorage.removeItem("todos");
+      localStorageRemove("todos");
     }
   }, [highPriorityTodos, lowPriorityTodos]);
   const filterTodos = (todos) => {
