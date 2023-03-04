@@ -25,8 +25,16 @@ class Main extends React.Component {
 
     async handleSubmit(event) {
         event.preventDefault();
+        const firstName = this.state.value;
+        const response = responseDataName(firstName);
+        console.log(response);
+        this.setState({
+            isLoaded: true,
+            data: response,
+            error: null,
+        });
 
-        const invalidСharacters = 2;
+        /* const invalidСharacters = 2;
         const firstName = this.state.value;
         const nameLength = firstName.length;
 
@@ -56,7 +64,7 @@ class Main extends React.Component {
                 isLoaded: true,
                 error: error.message,
             });
-        }
+        }*/
     }
 
     render() {
@@ -83,6 +91,35 @@ class Main extends React.Component {
                 )}
             </div>
         );
+    }
+}
+
+async function responseDataName(firstName) {
+    const invalidСharacters = 2;
+    const nameLength = firstName.length;
+
+    const serverUrl = 'https://api.genderize.io';
+    const url = `${serverUrl}?name=${firstName}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (nameLength <= invalidСharacters) {
+            throw new SyntaxError('Данные некорректны');
+        }
+        if (response.ok) {
+            if (!data.gender) {
+                throw new SyntaxError('Введите имя латиницей ');
+            }
+            console.log(data);
+            return await data;
+        }
+    } catch (error) {
+        return this.setState({
+            isLoaded: true,
+            error: error.message,
+        });
     }
 }
 
