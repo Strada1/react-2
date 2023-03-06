@@ -7,7 +7,6 @@ export const useWidth = () => {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-    return window.removeEventListener("resize", handleResize);
   }, []);
   useEffect(() => {
     if (width < 920) {
