@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CheckInputFalse from './CheckInput';
+import Input from './Input';
 export default class Button extends Component {
     constructor() {
         super();
@@ -57,7 +58,9 @@ export default class Button extends Component {
 
         return (
         <form onSubmit={this.btnHandler}>
-            <input onChange={this.inpHandler} value={name} type="text" placeholder='Type your name'/>
+            <Input
+            onInputHandlerChange = {this.inputHandler}
+            value = {name}/>
             <CheckInputFalse name = {isValid}/>
             <button>Button</button>
             <div>
