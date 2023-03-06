@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CheckInputFalse from './CheckInput';
-
 export default class Button extends Component {
     constructor() {
         super();
@@ -12,15 +11,16 @@ export default class Button extends Component {
         }
     }
     
-    inpHandler = (event) => {
-        let element = event.target.value;
+    inputHandler = (event) => {
+        const element = event.target.value;
         this.setState({
             name: element
         })
     }
     
     getResponse = (link, name) => {
-        if(name.length <= 3) {
+        const minLengthOfWord = 3;
+        if(name.length <= minLengthOfWord) {
             this.setState({
                 isValid: false,
                 gender: '',
@@ -30,11 +30,9 @@ export default class Button extends Component {
                 fetch(`${link}?name=${name}`)
                 .then(response => response.json())
                 .then(res => {
-                    let gender = res.gender;
-                    let name = res.name;
                     this.setState({
-                        gender: gender,
-                        requestName: name,
+                        gender: res.gender,
+                        requestName: res.name,
                         isValid: true,
                     })
                 });
@@ -47,7 +45,7 @@ export default class Button extends Component {
     btnHandler = (event) => {
         event.preventDefault();
         const serverUrl = 'https://api.genderize.io';
-        let element = this.state.name;
+        const element = this.state.name;
         this.getResponse(serverUrl, element);
         this.setState({
             name: ''
@@ -55,20 +53,18 @@ export default class Button extends Component {
     }
 
     render() {
-        const name = this.state.name;
-        const valid = this.state.isValid;
-        const gender = this.state.gender;
-        const request = this.state.requestName;
+        const {name, isValid, gender, requestName} = this.state;
 
         return (
         <form onSubmit={this.btnHandler}>
             <input onChange={this.inpHandler} value={name} type="text" placeholder='Type your name'/>
-            <CheckInputFalse name = {valid}/>
+            <CheckInputFalse name = {isValid}/>
             <button>Button</button>
             <div>
-                <p style = {{visibility: !gender ? "hidden" : "visible"}}>The gender of {request} is {gender}</p>
+                <p style = {{visibility: !gender ? "hidden" : "visible"}}>The gender of {requestName} is {gender}</p>
             </div>
         </form>
         )
     }
 }
+
