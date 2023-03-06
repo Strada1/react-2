@@ -5,7 +5,9 @@ export const useWidth = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return window.removeEventListener("resize", handleResize);
   }, []);
   useEffect(() => {
     if (width < 920) {
@@ -15,6 +17,6 @@ export const useWidth = () => {
       setIsDesktop(true);
       setIsMobile(false);
     }
-  }, [window.innerWidth]);
+  }, [width]);
   return { isDesktop, isMobile, width };
 };
