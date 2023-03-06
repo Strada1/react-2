@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { check } from 'prettier';
+import React, { useState } from 'react'
 
-const Task = ({ id, task, status , deleteTodo}) => {
-  const check = status === 'done'
-  const [checked, setChecked] = useState(check)
-
-  const getInputCheck = () => {
-    setChecked(!checked)
-  }
-
-  const checkedStyle = {
-    backgroundColor: '#dbdbdb',
-  }
+const Task = ({ id, task,todos, status, deleteTodo, onChange}) => {
+ 
   return (
-    <div className='item' style={checked ? checkedStyle : null}>
+    <div className='item'>
       <input
-        defaultChecked={checked}
-        onChange={getInputCheck}
-        type='checkbox'
+        type="checkbox"
+        checked={status}
+        onChange={onChange}
         id={id}
+        status={toString(status)}
       />
       <label name={id}>
         {task}

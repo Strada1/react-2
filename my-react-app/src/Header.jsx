@@ -1,18 +1,17 @@
 import { useState } from 'react'
 
-const Header = ({ addTodo }) => {
+const Header = ({ addTodo , stat}) => {
   const [inputValue, setInputValue] = useState('')
-
   const getInputValue = (e) => {
     setInputValue(e.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addTodo({ id: String(Date.now()), task: inputValue, status: 'todo' })
+    addTodo({ id: String(Date.now()), task: inputValue, status: false})
     setInputValue('')
   }
-
+ 
   return (
     <form onSubmit={handleSubmit}>
       <input
