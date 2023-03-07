@@ -1,18 +1,10 @@
-import { useState , useEffect} from 'react'
+import { useState } from 'react'
 import './App.css'
 import Header from './Header'
 import List from './List'
+import storage from './storage'
 
 function App() {
-  const storage = {
-    saveCityFavoriteList: function (todosMas) {
-      localStorage.setItem('List', JSON.stringify(Array.from(todosMas)));
-    },
-    getCityFavoriteList() {
-      return JSON.parse(localStorage.getItem('List'));
-    },
-  }
-
   const [todos, setTodo] = useState(storage.getCityFavoriteList()||[])
  
   const addTodo = (todo) => {
@@ -24,21 +16,25 @@ function App() {
     storage.saveCityFavoriteList(todos.filter((item) => item.id !== id))
   }
   const changeChecking = (id) => {
-    const newTodos =(todos.map((todo) => {
+    const newTodos = (todos.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, status: !checked };
+          return { ...todo, status: !todo.status };
         }
         return todo;
     }))
-    setTodo(newTodos);
+    setTodo(newTodos)
+    storage.saveCityFavoriteList(newTodos)
   }
   return (
     <div>
       <Header
         addTodo={addTodo}
-       stat={false}
       />
-      <List todos={todos} deleteTodo={deleteTodo} onChange={changeChecking} />
+      <List
+        todos={todos}
+        deleteTodo={deleteTodo}
+        onChange={changeChecking}
+      />
       </div>
   )
 }

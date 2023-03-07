@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
-const Header = ({ addTodo , stat}) => {
-  const [inputValue, setInputValue] = useState('')
+const defaultInputValue = ''
+const Header = ({ addTodo }) => {
+  const [inputValue, setInputValue] = useState(defaultInputValue)
+  
   const getInputValue = (e) => {
     setInputValue(e.target.value)
   }
@@ -9,7 +11,7 @@ const Header = ({ addTodo , stat}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addTodo({ id: String(Date.now()), task: inputValue, status: false})
-    setInputValue('')
+    setInputValue(defaultInputValue)
   }
  
   return (

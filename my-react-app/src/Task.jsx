@@ -1,21 +1,21 @@
-import { check } from 'prettier';
-import React, { useState } from 'react'
-
-const Task = ({ id, task,todos, status, deleteTodo, onChange}) => {
+const Task = ({ id, task, status, onChange, deleteTodo }) => {
  
   return (
     <div className='item'>
       <input
-        type="checkbox"
-        checked={status}
-        onChange={onChange}
         id={id}
         status={toString(status)}
+        onChange={() => onChange(id)}
+        type="checkbox"
+        checked={status}
       />
       <label name={id}>
         {task}
-          </label>
-          <button onClick={() => deleteTodo(id)}>-</button>
+      </label>
+      <button
+        onClick={() => deleteTodo(id)}>
+        -
+      </button>
     </div>
   )
 }

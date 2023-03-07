@@ -3,7 +3,6 @@ import Task from './Task'
 const List = ({ todos, deleteTodo , onChange}) => {
     return (
         <div>
-            <div >
                 {todos.map(({ id, task, status }) => (
                     <Task
                         key={id}
@@ -11,11 +10,9 @@ const List = ({ todos, deleteTodo , onChange}) => {
                         task={task}
                         status={status}
                         deleteTodo={deleteTodo}
-                        todos={todos}
                         onChange={onChange}
                     />
                 ))}
-            </div>
         </div>
     )
 }
