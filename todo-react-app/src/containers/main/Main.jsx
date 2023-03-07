@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { dateManipulation, useNewId, storage } from '../../core/utils';
-import { InputError } from '../../components/input/InputError';
 import { STATUS, TITLE, VALUE } from '../../core/constants';
+import { InputError } from '../../components/input/InputError';
 import { Form } from '../../components/Form';
 import { List } from '../list/List';
 import './Main.css';

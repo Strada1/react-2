@@ -5,7 +5,7 @@ import {
 } from '../../core/constants';
 import './Input.css';
 
-const defineContent = (props, className) => {
+const defineInput = (props, className) => {
   const {
     type, option, changeTask, id, header, onBlur, status, icon,
   } = props;
@@ -75,9 +75,9 @@ function Input(props) {
   };
 
   const labelClassName = !option ? className.label : `${className.label} ${option}`;
-  const content = defineContent(props, className);
+  const input = defineInput(props, className);
 
-  return <label className={labelClassName}>{content}</label>;
+  return <label className={labelClassName}>{input}</label>;
 }
 
 export { Input };

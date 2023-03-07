@@ -68,6 +68,11 @@ const ACTION = {
   UPDATE: 'update',
 };
 
+const PREFIX = {
+  ...TAG,
+  TASK: 'task',
+};
+
 const INPUT_DATA = {
   text: {
     label: 'Task',
@@ -91,5 +96,5 @@ const INPUT_DATA = {
 };
 
 export {
-  TYPE, TITLE, TAG, VALUE, STORAGE, TASK_KEY, ICON, STATUS, ACTION, PRIORITY, INPUT_DATA,
+  TYPE, TITLE, TAG, VALUE, STORAGE, TASK_KEY, ICON, STATUS, ACTION, PRIORITY, INPUT_DATA, PREFIX,
 };

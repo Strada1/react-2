@@ -1,8 +1,11 @@
+import { PREFIX } from '../../core/constants';
 import './Wrapper.css';
 
-function Wrapper({ extraClass, children }) {
-  const className = `${extraClass}-wrapper wrapper`;
-  const element = extraClass === 'task' ? <li className={className}>{children}</li> : <div className={className}>{children}</div>;
+function Wrapper({ prefix, children }) {
+  const className = `${prefix}-wrapper wrapper`;
+  const element = prefix === PREFIX.TASK
+    ? <li className={className}>{children}</li>
+    : <div className={className}>{children}</div>;
   return element;
 }
 

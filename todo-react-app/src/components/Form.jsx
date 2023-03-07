@@ -4,7 +4,7 @@ import { IconSvg } from './icon-svg/IconSvg';
 import { Button } from './button/Button';
 import { Input } from './input/Input';
 import {
-  ACTION, ICON, TYPE, PRIORITY,
+  ACTION, ICON, TYPE, PRIORITY, TAG,
 } from '../core/constants';
 
 function Form({ onSubmit }) {
@@ -12,13 +12,13 @@ function Form({ onSubmit }) {
     <form className="form" onSubmit={onSubmit}>
       <fieldset>
         <legend>New Task</legend>
-        <Wrapper extraClass="input">
+        <Wrapper prefix={TAG.INPUT}>
           <Input type={TYPE.INPUT.TEXT} />
         </Wrapper>
-        <Wrapper extraClass="input">
+        <Wrapper prefix={TAG.INPUT}>
           <Input header type={TYPE.INPUT.DATETIME_LOCAL} />
         </Wrapper>
-        <Wrapper extraClass="input">
+        <Wrapper prefix={TAG.INPUT}>
           <Priority className={ACTION.ADD}>
             {PRIORITY.map(
               (option) => (
