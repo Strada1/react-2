@@ -1,0 +1,53 @@
+.input-task,
+.input-date {
+    padding-left: 45px;
+}
+
+.selection input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.selection span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.selection span::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 30%;
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+.low + span::before {
+    background: var(--priority-low-color);
+}
+
+.medium + span::before {
+    background: var(--priority-medium-color);
+}
+
+.high + span::before {
+    background: var(--priority-high-color);
+}
+
+.selection input:not(:disabled):not(:checked) + span:hover::before,
+.selection input:not(:disabled):active + span::before,
+.selection input:checked + span::before,
+.selection input:focus + span::before {
+    border: 2px solid var(--white-color);
+}
+
+.error {
+    color: var(--priority-high-color);
+}
+
+.input-checkbox {
+    display: none;
+}
