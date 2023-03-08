@@ -54,7 +54,8 @@ const VALUE = {
   DEFAULT: '',
   ZERO: 0,
   OFF: 'off',
-  INPUT_ERROR: 'Fill in the task and date fields correctly',
+  ERROR_DATE: 'The desired due date for the task cannot be past or unrealistic.',
+  ERROR_TASK: 'It looks like you didn\'t enter anything.',
 };
 
 const TASK_KEY = {
@@ -72,7 +73,7 @@ const ACTION = {
   UPDATE: 'update',
 };
 
-const PREFIX = {
+const CLASS = {
   ...TAG,
   TASK: 'task',
   TITLE: 'title',
@@ -86,5 +87,5 @@ const PREFIX = {
 };
 
 export {
-  TYPE, TITLE, VALUE, TASK_KEY, ICON, STATUS, ACTION, PRIORITY, PREFIX,
+  TYPE, TITLE, VALUE, TASK_KEY, ICON, STATUS, ACTION, PRIORITY, CLASS,
 };

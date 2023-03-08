@@ -1,12 +1,14 @@
-import { dateManipulation } from '../../core/utils';
+import { dateAction } from '../../core/utils';
 import {
-  TASK_KEY, TYPE, VALUE, TITLE, PREFIX,
+  TASK_KEY, TYPE, VALUE, TITLE, CLASS,
 } from '../../core/constants';
 import './Input.css';
 
 const inputProps = {};
 
-const defineProps = ({ changeTask, onBlur, id }, type) => {
+const defineProps = ({
+  changeTask, onBlur, id, setDateError,
+}, type) => {
   try {
     inputProps.onBlur = onBlur;
 
@@ -16,9 +18,9 @@ const defineProps = ({ changeTask, onBlur, id }, type) => {
         return inputProps;
       case TYPE.INPUT.DATETIME_LOCAL:
         inputProps.onChange = ({ target }) => {
-          if (dateManipulation.check(target.value)) return;
-          const date = !target.value ? VALUE.DEFAULT : dateManipulation.convert(target.value);
-          changeTask(id, TASK_KEY.DATE, date);
+          if (dateAction.check(target.value)) return setDateError();
+          const date = !target.value ? VALUE.DEFAULT : dateAction.convert(target.value);
+          return changeTask(id, TASK_KEY.DATE, date);
         };
         return inputProps;
       default:
@@ -32,12 +34,12 @@ const defineProps = ({ changeTask, onBlur, id }, type) => {
 
 function Input() {
   return (
-    <label className={`${PREFIX.LABEL}-${TASK_KEY.TEXT}`}>
+    <label className={`${CLASS.LABEL}-${TASK_KEY.TEXT}`}>
       {TITLE.TASK}
       <input
         type={TYPE.INPUT.TEXT}
         name={TYPE.INPUT.TEXT}
-        className={`${PREFIX.INPUT}-${PREFIX.TASK}`}
+        className={`${CLASS.INPUT}-${CLASS.TASK}`}
         placeholder={TITLE.PLACEHOLDER}
         autoComplete={VALUE.OFF}
       />

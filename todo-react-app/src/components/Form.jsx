@@ -6,21 +6,21 @@ import { Wrapper } from '../containers/wrapper/Wrapper';
 import { Button } from './button/Button';
 import { Input } from './input/Input';
 import {
-  ACTION, ICON, PRIORITY, PREFIX, TITLE,
+  ACTION, ICON, PRIORITY, CLASS, TITLE,
 } from '../core/constants';
 
 function Form({ onSubmit }) {
   return (
-    <form className={PREFIX.FORM} onSubmit={onSubmit}>
+    <form className={CLASS.FORM} onSubmit={onSubmit}>
       <fieldset>
         <legend>{TITLE.NEW_TASK}</legend>
-        <Wrapper prefix={PREFIX.INPUT}>
+        <Wrapper prefix={CLASS.INPUT}>
           <Input />
         </Wrapper>
-        <Wrapper prefix={PREFIX.INPUT}>
+        <Wrapper prefix={CLASS.INPUT}>
           <DateTimeInput header />
         </Wrapper>
-        <Wrapper prefix={PREFIX.INPUT}>
+        <Wrapper prefix={CLASS.INPUT}>
           <Priority className={ACTION.ADD}>
             {PRIORITY.map((option) => <RadioInput {...{ header: true, option, key: option }} />)}
           </Priority>

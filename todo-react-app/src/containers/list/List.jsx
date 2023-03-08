@@ -7,7 +7,7 @@ import { Wrapper } from '../wrapper/Wrapper';
 import { IconSvg } from '../../components/icon-svg/IconSvg';
 import { Button } from '../../components/button/Button';
 import {
-  ACTION, ICON, PRIORITY, PREFIX,
+  ACTION, ICON, PRIORITY, CLASS,
 } from '../../core/constants';
 import './List.css';
 
@@ -15,7 +15,7 @@ const defineIcon = (status) => (status ? ICON.CIRCLE_ARROW : ICON.CHECK);
 
 function List(props) {
   const {
-    list, changeTask, title, deleteTask, prefix,
+    list, title, className, deleteTask, changeTask, setDateError,
   } = props;
 
   const [priorityChange, setPriorityChange] = useState({ toggle: false });
@@ -30,17 +30,23 @@ function List(props) {
   };
 
   return (
-    <section className={prefix}>
-      <h2 className={`${PREFIX.SECTION}-${PREFIX.TITLE}`}>{title}</h2>
-      <ul className={`${PREFIX.SECTION}-${PREFIX.LIST}`}>
+    <section className={className}>
+      <h2 className={`${CLASS.SECTION}-${CLASS.TITLE}`}>{title}</h2>
+      <ul className={`${CLASS.SECTION}-${CLASS.LIST}`}>
         {list && list.map(
           ({
             id, status, priority, text, date,
           }) => (
-            <li className={`${PREFIX.TASK}-${PREFIX.CONTAINER}`} key={id}>
+            <li className={`${CLASS.TASK}-${CLASS.CONTAINER}`} key={id}>
               {dateChange.toggle && dateChange.id === id
               && (
-              <DateTimeInput {...{ changeTask, id, onBlur: trackDisappearanceFocus }} />
+              <DateTimeInput {...{
+                onBlur: trackDisappearanceFocus,
+                setDateError,
+                changeTask,
+                id,
+              }}
+              />
               )}
               {priorityChange.toggle && priorityChange.id === id && (
               <Priority className={ACTION.CHANGE}>
@@ -58,7 +64,7 @@ function List(props) {
                 )}
               </Priority>
               )}
-              <Wrapper prefix={PREFIX.TASK}>
+              <Wrapper prefix={CLASS.TASK}>
                 <Button {...{
                   option: ACTION.CHANGE,
                   handlerPriority,
@@ -68,8 +74,8 @@ function List(props) {
                 >
                   <IconSvg {...{ icon: ICON.LIGHTNING, option: priority }} />
                 </Button>
-                <span className={PREFIX.TASK}>{text}</span>
-                <div className={PREFIX.OPTIONS}>
+                <span className={CLASS.TASK}>{text}</span>
+                <div className={CLASS.OPTIONS}>
                   <Button {...{ handlerDate, id, option: ACTION.UPDATE }}>
                     {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
                   </Button>

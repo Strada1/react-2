@@ -1,4 +1,4 @@
-import { ACTION, PREFIX, TYPE } from '../../core/constants';
+import { ACTION, CLASS, TYPE } from '../../core/constants';
 import './Button.css';
 
 function Button(props) {
@@ -28,7 +28,7 @@ function Button(props) {
 
   return (
     <label>
-      <button className={PREFIX.BUTTON} type={type} onClick={handler}>{children}</button>
+      <button className={CLASS.BUTTON} type={type} onClick={handler}>{children}</button>
     </label>
   );
 }

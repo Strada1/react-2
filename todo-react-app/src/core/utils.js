@@ -33,7 +33,7 @@ const padTo2Digits = (number) => number.toString().padStart(2, '0');
 const cut2Digits = (value) => value.toString().slice(-2);
 const getMonthNumber = (date) => padTo2Digits(date.getMonth() + 1);
 
-const dateManipulation = {
+const dateAction = {
   convert(inputDate) {
     const fullDate = new Date(inputDate);
     const day = padTo2Digits(fullDate.getDate());
@@ -45,7 +45,7 @@ const dateManipulation = {
   check(inputDate) {
     const currentDate = new Date();
     const fullDate = new Date(inputDate);
-    const maxDate = dateManipulation.getMaxDate(currentDate);
+    const maxDate = dateAction.getMaxDate(currentDate);
     return !!((fullDate < currentDate || fullDate > maxDate));
   },
   getMaxDate(date) {
@@ -53,4 +53,4 @@ const dateManipulation = {
   },
 };
 
-export { dateManipulation, useNewId, storage };
+export { dateAction, useNewId, storage };

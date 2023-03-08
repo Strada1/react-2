@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { dateManipulation, useNewId, storage } from '../../core/utils';
+import { dateAction, useNewId, storage } from '../../core/utils';
 import { InputError } from '../../components/input/InputError';
 import { Form } from '../../components/Form';
 import { List } from '../list/List';
 import {
-  PREFIX, STATUS, TITLE, VALUE,
+  CLASS, STATUS, TITLE, VALUE,
 } from '../../core/constants';
 import './Main.css';
 
 function Main() {
   const [taskList, setTaskList] = useState(storage.getTaskList());
-  const [hasError, setHasError] = useState(false);
+  const [control, setControl] = useState({ error: false });
   const [id, incrementId] = useNewId();
   const [task, setTask] = useState({});
 
@@ -18,21 +18,19 @@ function Main() {
     event.preventDefault();
     const { text, date, priority } = event.target;
 
-    if (!text.value || dateManipulation.check(date.value)) {
-      setHasError(true);
-      return;
-    }
+    if (!text.value) return setControl({ error: true, message: VALUE.ERROR_TASK });
+    if (dateAction.check(date.value)) return setControl({ error: true, message: VALUE.ERROR_DATE });
 
     const newTask = {
       text: text.value,
-      date: !date.value ? VALUE.DEFAULT : dateManipulation.convert(date.value),
+      date: !date.value ? VALUE.DEFAULT : dateAction.convert(date.value),
       priority: priority.value,
     };
 
     setTask(newTask);
-    setHasError(false);
+    setControl({ error: false });
     incrementId(taskList);
-    event.target.reset();
+    return event.target.reset();
   };
 
   const updateTaskList = (list) => {
@@ -43,6 +41,7 @@ function Main() {
   const changeTask = (taskId, value, newValue) => {
     const newTaskList = taskList.map((item) => (
       item.id === taskId ? { ...item, [value]: newValue } : item));
+    setControl({ error: false });
     updateTaskList(newTaskList);
   };
 
@@ -50,6 +49,8 @@ function Main() {
     const newTaskList = taskList.filter((item) => item.id !== taskId);
     updateTaskList(newTaskList);
   };
+
+  const setDateError = () => setControl({ error: true, message: VALUE.ERROR_DATE });
 
   useEffect(
     () => {
@@ -61,8 +62,17 @@ function Main() {
     [task],
   );
 
+  useEffect(
+    () => {
+      setControl({ ...control, display: true });
+      const timer = setTimeout(() => setControl({ error: false, display: false }), 3000);
+      return () => clearTimeout(timer);
+    },
+    [control.error],
+  );
+
   const defineList = (value) => taskList.filter(({ status }) => status === value);
-  const listProps = { changeTask, deleteTask };
+  const listProps = { changeTask, deleteTask, setDateError };
   const lists = [
     {
       ...listProps,
@@ -79,14 +89,14 @@ function Main() {
   ];
 
   return (
-    <main className={PREFIX.MAIN}>
+    <main className={CLASS.MAIN}>
       <Form onSubmit={handleSubmit} />
-      {hasError && <InputError />}
+      {control.display && <InputError message={control.message} />}
       {taskList.length !== 0 && lists.map(
         (listTasks) => (
           <List
             {...listTasks}
-            prefix={listTasks.list.length !== 0 ? PREFIX.SECTION : PREFIX.NONE}
+            className={listTasks.list.length !== 0 ? CLASS.SECTION : CLASS.NONE}
           />
         ),
       )}
