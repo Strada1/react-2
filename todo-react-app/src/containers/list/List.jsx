@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { CheckboxInput } from '../../components/input/checkbox/CheckboxInput';
+import { DateTimeInput } from '../../components/input/date/DateTimeInput';
+import { RadioInput } from '../../components/input/radio/RadioInput';
 import { Priority } from '../priority/Priority';
 import { Wrapper } from '../wrapper/Wrapper';
 import { IconSvg } from '../../components/icon-svg/IconSvg';
 import { Button } from '../../components/button/Button';
-import { Input } from '../../components/input/Input';
 import {
-  ACTION, ICON, TYPE, PRIORITY, PREFIX,
+  ACTION, ICON, PRIORITY, PREFIX,
 } from '../../core/constants';
 import './List.css';
 
@@ -28,34 +30,28 @@ function List(props) {
   };
 
   return (
-    <section className="section">
-      <h2 className="section-title">{title}</h2>
-      <ul className="section-list">
+    <section className={PREFIX.SECTION}>
+      <h2 className={`${PREFIX.SECTION}-${PREFIX.TITLE}`}>{title}</h2>
+      <ul className={`${PREFIX.SECTION}-${PREFIX.LIST}`}>
         {list && list.map(
           ({
             id, status, priority, text, date,
           }) => (
-            <div className="task-container" key={id}>
+            <li className={`${PREFIX.TASK}-${PREFIX.CONTAINER}`} key={id}>
               {dateChange.toggle && dateChange.id === id
               && (
-              <Input
-                type={TYPE.INPUT.DATETIME_LOCAL}
-                changeTask={changeTask}
-                id={id}
-                onBlur={trackDisappearanceFocus}
-              />
+              <DateTimeInput {...{ changeTask, id, onBlur: trackDisappearanceFocus }} />
               )}
               {priorityChange.toggle && priorityChange.id === id && (
               <Priority className={ACTION.CHANGE}>
                 {PRIORITY.map(
                   (option) => (
-                    <Input {...{
-                      type: TYPE.INPUT.RADIO,
+                    <RadioInput {...{
                       key: option,
+                      onBlur: trackDisappearanceFocus,
                       changeTask,
                       option,
                       id,
-                      onBlur: trackDisappearanceFocus,
                     }}
                     />
                   ),
@@ -64,30 +60,28 @@ function List(props) {
               )}
               <Wrapper prefix={PREFIX.TASK}>
                 <Button {...{
-                  handlerPriority, id, option: ACTION.CHANGE, priority,
+                  option: ACTION.CHANGE,
+                  handlerPriority,
+                  priority,
+                  id,
                 }}
                 >
                   <IconSvg {...{ icon: ICON.LIGHTNING, option: priority }} />
                 </Button>
                 <span className={PREFIX.TASK}>{text}</span>
-                <div className="options">
+                <div className={PREFIX.OPTIONS}>
                   <Button {...{ handlerDate, id, option: ACTION.UPDATE }}>
                     {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
                   </Button>
-                  <Input {...{
-                    type: TYPE.INPUT.CHECKBOX,
-                    icon: defineIcon(status),
-                    changeTask,
-                    status,
-                    id,
-                  }}
-                  />
+                  <CheckboxInput {...{ changeTask, status, id }}>
+                    <IconSvg icon={defineIcon(status)} />
+                  </CheckboxInput>
                   <Button {...{ deleteTask, id, option: ACTION.DELETE }}>
                     <IconSvg icon={ICON.CROSS} />
                   </Button>
                 </div>
               </Wrapper>
-            </div>
+            </li>
           ),
         )}
       </ul>

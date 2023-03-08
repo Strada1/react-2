@@ -1,7 +1,8 @@
+import { PREFIX, VALUE } from '../../core/constants';
 import './Input.css';
 
 function InputError() {
-  return <span className="error">Fill in the task and date fields correctly</span>;
+  return <span className={PREFIX.ERROR}>{VALUE.INPUT_ERROR}</span>;
 }
 
 export { InputError };

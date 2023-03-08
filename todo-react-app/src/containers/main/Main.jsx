@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { dateManipulation, useNewId, storage } from '../../core/utils';
-import { STATUS, TITLE, VALUE } from '../../core/constants';
 import { InputError } from '../../components/input/InputError';
 import { Form } from '../../components/Form';
 import { List } from '../list/List';
+import {
+  PREFIX, STATUS, TITLE, VALUE,
+} from '../../core/constants';
 import './Main.css';
 
 function Main() {
@@ -77,7 +79,7 @@ function Main() {
   ];
 
   return (
-    <main className="main">
+    <main className={PREFIX.MAIN}>
       <Form onSubmit={handleSubmit} />
       {hasError && <InputError />}
       {taskList.length !== 0 && lists.map((listTasks) => <List {...listTasks} />)}

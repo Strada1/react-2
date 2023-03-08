@@ -1,10 +1,10 @@
-import { ACTION } from '../../core/constants';
+import { ACTION, PREFIX, TITLE } from '../../core/constants';
 import './Priority.css';
 
 function Priority({ className, children }) {
   return (
-    <div className={`selection ${className}`}>
-      {className === ACTION.ADD && <p className="selection-title">Priority</p>}
+    <div className={`${PREFIX.SELECTION} ${className}`}>
+      {className === ACTION.ADD && <p className={`${PREFIX.SELECTION}-${PREFIX.TITLE}`}>{TITLE.PRIORITY}</p>}
       {children}
     </div>
   );

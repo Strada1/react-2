@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { STORAGE, VALUE } from './constants';
+import { TITLE, VALUE } from './constants';
 
 const useNewId = () => {
   const [id, setId] = useState(VALUE.ZERO);
@@ -12,15 +12,15 @@ const useNewId = () => {
 const storage = {
   saveTaskList(list) {
     try {
-      localStorage.setItem(STORAGE.TODO_LIST, JSON.stringify(list));
+      localStorage.setItem(TITLE.TODO_LIST, JSON.stringify(list));
     } catch (error) {
       console.error(error.message);
     }
   },
   getTaskList() {
     try {
-      return localStorage.getItem(STORAGE.TODO_LIST)
-        ? JSON.parse(localStorage.getItem(STORAGE.TODO_LIST))
+      return localStorage.getItem(TITLE.TODO_LIST)
+        ? JSON.parse(localStorage.getItem(TITLE.TODO_LIST))
         : [];
     } catch (error) {
       console.error(error.message);

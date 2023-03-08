@@ -1,34 +1,28 @@
 import { Priority } from '../containers/priority/Priority';
-import { Wrapper } from '../containers/wrapper/Wrapper';
+import { DateTimeInput } from './input/date/DateTimeInput';
+import { RadioInput } from './input/radio/RadioInput';
 import { IconSvg } from './icon-svg/IconSvg';
+import { Wrapper } from '../containers/wrapper/Wrapper';
 import { Button } from './button/Button';
 import { Input } from './input/Input';
 import {
-  ACTION, ICON, TYPE, PRIORITY, TAG,
+  ACTION, ICON, PRIORITY, PREFIX, TITLE,
 } from '../core/constants';
 
 function Form({ onSubmit }) {
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className={PREFIX.FORM} onSubmit={onSubmit}>
       <fieldset>
-        <legend>New Task</legend>
-        <Wrapper prefix={TAG.INPUT}>
-          <Input type={TYPE.INPUT.TEXT} />
+        <legend>{TITLE.NEW_TASK}</legend>
+        <Wrapper prefix={PREFIX.INPUT}>
+          <Input />
         </Wrapper>
-        <Wrapper prefix={TAG.INPUT}>
-          <Input header type={TYPE.INPUT.DATETIME_LOCAL} />
+        <Wrapper prefix={PREFIX.INPUT}>
+          <DateTimeInput header />
         </Wrapper>
-        <Wrapper prefix={TAG.INPUT}>
+        <Wrapper prefix={PREFIX.INPUT}>
           <Priority className={ACTION.ADD}>
-            {PRIORITY.map(
-              (option) => (
-                <Input
-                  {...{
-                    header: true, type: TYPE.INPUT.RADIO, option, key: option,
-                  }}
-                />
-              ),
-            )}
+            {PRIORITY.map((option) => <RadioInput {...{ header: true, option, key: option }} />)}
           </Priority>
           <Button option={ACTION.ADD}>
             <IconSvg icon={ICON.PLUS} />

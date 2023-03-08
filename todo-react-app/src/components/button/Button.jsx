@@ -1,4 +1,4 @@
-import { ACTION, TAG, TYPE } from '../../core/constants';
+import { ACTION, PREFIX, TYPE } from '../../core/constants';
 import './Button.css';
 
 function Button(props) {
@@ -6,8 +6,8 @@ function Button(props) {
     children, option, id, deleteTask, handlerPriority, handlerDate,
   } = props;
 
-  let handler;
   let type = TYPE.BUTTON.BUTTON;
+  let handler;
 
   switch (option) {
     case ACTION.DELETE:
@@ -28,7 +28,7 @@ function Button(props) {
 
   return (
     <label>
-      <button className={TAG.BUTTON} type={type} onClick={handler}>{children}</button>
+      <button className={PREFIX.BUTTON} type={type} onClick={handler}>{children}</button>
     </label>
   );
 }
