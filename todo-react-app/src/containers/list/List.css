@@ -31,3 +31,7 @@
 .task-container > .change {
     margin-left: -280px;
 }
+
+.none {
+    display: none;
+}

@@ -82,6 +82,7 @@ const PREFIX = {
   OPTIONS: 'options',
   SELECTION: 'selection',
   WRAPPER: 'wrapper',
+  NONE: 'none',
 };
 
 export {

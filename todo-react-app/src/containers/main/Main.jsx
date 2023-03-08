@@ -82,7 +82,14 @@ function Main() {
     <main className={PREFIX.MAIN}>
       <Form onSubmit={handleSubmit} />
       {hasError && <InputError />}
-      {taskList.length !== 0 && lists.map((listTasks) => <List {...listTasks} />)}
+      {taskList.length !== 0 && lists.map(
+        (listTasks) => (
+          <List
+            {...listTasks}
+            prefix={listTasks.list.length !== 0 ? PREFIX.SECTION : PREFIX.NONE}
+          />
+        ),
+      )}
     </main>
   );
 }

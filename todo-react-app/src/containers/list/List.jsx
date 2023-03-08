@@ -15,7 +15,7 @@ const defineIcon = (status) => (status ? ICON.CIRCLE_ARROW : ICON.CHECK);
 
 function List(props) {
   const {
-    list, changeTask, title, deleteTask,
+    list, changeTask, title, deleteTask, prefix,
   } = props;
 
   const [priorityChange, setPriorityChange] = useState({ toggle: false });
@@ -30,7 +30,7 @@ function List(props) {
   };
 
   return (
-    <section className={PREFIX.SECTION}>
+    <section className={prefix}>
       <h2 className={`${PREFIX.SECTION}-${PREFIX.TITLE}`}>{title}</h2>
       <ul className={`${PREFIX.SECTION}-${PREFIX.LIST}`}>
         {list && list.map(
