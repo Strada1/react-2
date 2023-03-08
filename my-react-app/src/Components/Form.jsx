@@ -26,7 +26,7 @@ class Form extends React.Component {
   render() {
     return(
     <form className='form' onSubmit={this.handleSubmit}>
-      <InputText type='text' placeholder='Enter your name in english' onChange={this.handleChange} />
+      <InputText type='text' placeholder='Enter your name in english' value={this.state.value} onChange={this.handleChange} />
       <Button/>
     </form>
     );

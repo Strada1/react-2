@@ -1,7 +1,7 @@
 import React from "react";
 const minLength = 2;
 
-function InputText({type, placeholder, eventFunction}) {
+function InputText({type, placeholder, eventFunction, value}) {
   /*
   function handleInput(e) {
     const name = e.target.value;
@@ -18,7 +18,7 @@ function InputText({type, placeholder, eventFunction}) {
       <label htmlFor="input">
         Check your gender:
       </label>
-      <input id="input" placeholder={placeholder} type={type} onChange={eventFunction} />
+      <input id="input" placeholder={placeholder} type={type} onChange={eventFunction} value={value} />
     </div>
     
   )
