@@ -2,7 +2,7 @@ import { useState } from "react"
 import '../App.css'
 import { BsPlus} from "react-icons/bs";
 
-function CreateToDo({setTodos}){
+function CreateToDo({setTodos, priority}){
 
     const [description, setDescription] = useState('');
 
@@ -11,6 +11,7 @@ function CreateToDo({setTodos}){
 			id: new Date(),
 			description,
 			isCompleted: false,
+            priority: priority,
 		}, ...prev,
 	])
 		setDescription('')
@@ -21,11 +22,12 @@ function CreateToDo({setTodos}){
             onChange={e => setDescription(e.target.value)} 
             value={description} 
             onKeyPress={(e) => e.key === 'Enter' && addTask(description)}/>
-
+    
             <button className="addButton" onClick={() => addTask(description)}>
                 <BsPlus  size={20}/>
             </button>
         </div>
     )
 }
+
 export default CreateToDo
