@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { CheckboxInput } from '../../components/input/checkbox/CheckboxInput';
 import { DateTimeInput } from '../../components/input/date/DateTimeInput';
 import { RadioInput } from '../../components/input/radio/RadioInput';
@@ -15,19 +14,8 @@ const defineIcon = (status) => (status ? ICON.CIRCLE_ARROW : ICON.CHECK);
 
 function List(props) {
   const {
-    list, title, className, deleteTask, changeTask, setDateError,
+    list, title, className, deleteTask, changeTask, change, openSetting, setDateError,
   } = props;
-
-  const [priorityChange, setPriorityChange] = useState({ toggle: false });
-  const [dateChange, setDateChange] = useState({ toggle: false });
-
-  const handlerPriority = (id) => setPriorityChange({ id, toggle: !priorityChange.toggle });
-  const handlerDate = (id) => setDateChange({ id, toggle: !dateChange.toggle });
-
-  const trackDisappearanceFocus = () => {
-    setPriorityChange({ toggle: false });
-    setDateChange({ toggle: false });
-  };
 
   return (
     <section className={className}>
@@ -38,23 +26,16 @@ function List(props) {
             id, status, priority, text, date,
           }) => (
             <li className={`${CLASS.TASK}-${CLASS.CONTAINER}`} key={id}>
-              {dateChange.toggle && dateChange.id === id
+              {change.date && change.taskId === id
               && (
-              <DateTimeInput {...{
-                onBlur: trackDisappearanceFocus,
-                setDateError,
-                changeTask,
-                id,
-              }}
-              />
+              <DateTimeInput {...{ setDateError, changeTask, id }} />
               )}
-              {priorityChange.toggle && priorityChange.id === id && (
+              {change.priority && change.taskId === id && (
               <Priority className={ACTION.CHANGE}>
                 {PRIORITY.map(
                   (option) => (
                     <RadioInput {...{
                       key: option,
-                      onBlur: trackDisappearanceFocus,
                       changeTask,
                       option,
                       id,
@@ -67,7 +48,7 @@ function List(props) {
               <Wrapper prefix={CLASS.TASK}>
                 <Button {...{
                   option: ACTION.CHANGE,
-                  handlerPriority,
+                  openSetting,
                   priority,
                   id,
                 }}
@@ -76,7 +57,7 @@ function List(props) {
                 </Button>
                 <span className={CLASS.TASK}>{text}</span>
                 <div className={CLASS.OPTIONS}>
-                  <Button {...{ handlerDate, id, option: ACTION.UPDATE }}>
+                  <Button {...{ openSetting, id, option: ACTION.UPDATE }}>
                     {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
                   </Button>
                   <CheckboxInput {...{ changeTask, status, id }}>
