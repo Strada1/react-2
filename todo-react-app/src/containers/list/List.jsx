@@ -6,7 +6,7 @@ import { Wrapper } from '../wrapper/Wrapper';
 import { IconSvg } from '../../components/icon-svg/IconSvg';
 import { Button } from '../../components/button/Button';
 import {
-  ACTION, ICON, PRIORITY, CLASS,
+  ACTION, ICON, PRIORITY, CLASS, TASK_KEY,
 } from '../../core/constants';
 import './List.css';
 
@@ -46,24 +46,18 @@ function List(props) {
               </Priority>
               )}
               <Wrapper prefix={CLASS.TASK}>
-                <Button {...{
-                  option: ACTION.CHANGE,
-                  openSetting,
-                  priority,
-                  id,
-                }}
-                >
+                <Button {...{ option: TASK_KEY.PRIORITY, onClick: openSetting, id }}>
                   <IconSvg {...{ icon: ICON.LIGHTNING, option: priority }} />
                 </Button>
                 <span className={CLASS.TASK}>{text}</span>
                 <div className={CLASS.OPTIONS}>
-                  <Button {...{ openSetting, id, option: ACTION.UPDATE }}>
+                  <Button {...{ option: TASK_KEY.DATE, onClick: openSetting, id }}>
                     {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
                   </Button>
                   <CheckboxInput {...{ changeTask, status, id }}>
                     <IconSvg icon={defineIcon(status)} />
                   </CheckboxInput>
-                  <Button {...{ deleteTask, id, option: ACTION.DELETE }}>
+                  <Button {...{ onClick: deleteTask, id }}>
                     <IconSvg icon={ICON.CROSS} />
                   </Button>
                 </div>

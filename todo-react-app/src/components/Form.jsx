@@ -6,7 +6,7 @@ import { Wrapper } from '../containers/wrapper/Wrapper';
 import { Button } from './button/Button';
 import { Input } from './input/Input';
 import {
-  ACTION, ICON, PRIORITY, CLASS, TITLE,
+  ACTION, ICON, PRIORITY, CLASS, TITLE, TYPE,
 } from '../core/constants';
 
 function Form({ onSubmit }) {
@@ -24,7 +24,7 @@ function Form({ onSubmit }) {
           <Priority className={ACTION.ADD}>
             {PRIORITY.map((option) => <RadioInput {...{ header: true, option, key: option }} />)}
           </Priority>
-          <Button option={ACTION.ADD}>
+          <Button submit={TYPE.BUTTON.SUBMIT}>
             <IconSvg icon={ICON.PLUS} />
           </Button>
         </Wrapper>

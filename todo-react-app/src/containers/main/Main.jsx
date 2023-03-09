@@ -51,7 +51,6 @@ function Main() {
   const closeSetting = () => setChange({ priority: false, date: false });
 
   const openSetting = (taskId, type) => {
-    if (!type) closeSetting();
     if (type === TASK_KEY.PRIORITY) setChange({ ...change, priority: !change.priority, taskId });
     if (type === TASK_KEY.DATE) setChange({ ...change, date: !change.date, taskId });
   };
@@ -60,13 +59,13 @@ function Main() {
     const newTaskList = taskList.map((item) => (
       item.id === taskId ? { ...item, [value]: newValue } : item));
     updateTaskList(newTaskList);
-    closeSetting();
   };
 
   useEffect(
     () => {
       incrementId(taskList);
       setControl({ error: false });
+      closeSetting();
     },
     [taskList],
   );
