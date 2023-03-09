@@ -52,7 +52,6 @@ const TITLE = {
 
 const VALUE = {
   DEFAULT: '',
-  ZERO: 0,
   OFF: 'off',
   ERROR_DATE: 'The desired due date for the task cannot be past or unrealistic.',
   ERROR_TASK: 'It looks like you didn\'t enter anything.',

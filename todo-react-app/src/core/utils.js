@@ -1,33 +1,4 @@
-import { useState } from 'react';
-import { TITLE, VALUE, PRIORITY } from './constants';
-
-const useNewId = () => {
-  const [id, setId] = useState(VALUE.ZERO);
-  const incrementId = (taskList) => {
-    setId(taskList.length === VALUE.ZERO ? VALUE.ZERO : taskList[0].id + 1);
-  };
-  return [id, incrementId];
-};
-
-const storage = {
-  saveTaskList(list) {
-    try {
-      localStorage.setItem(TITLE.TODO_LIST, JSON.stringify(list));
-    } catch (error) {
-      console.error(error.message);
-    }
-  },
-  getTaskList() {
-    try {
-      return localStorage.getItem(TITLE.TODO_LIST)
-        ? JSON.parse(localStorage.getItem(TITLE.TODO_LIST))
-        : [];
-    } catch (error) {
-      console.error(error.message);
-      return [];
-    }
-  },
-};
+import { PRIORITY, ICON } from './constants';
 
 const padTo2Digits = (number) => number.toString().padStart(2, '0');
 const cut2Digits = (value) => value.toString().slice(-2);
@@ -56,16 +27,18 @@ const dateAction = {
 const filterList = (list, value) => list.filter(({ status }) => status === value);
 
 const sortList = (list) => {
-  const newList = list.sort((a, b) => {
-    const priorityA = PRIORITY.findIndex((p) => p === a.priority);
-    const priorityB = PRIORITY.findIndex((p) => p === b.priority);
+  list.sort((a, b) => {
+    const priorityA = PRIORITY.findIndex((item) => item === a.priority);
+    const priorityB = PRIORITY.findIndex((item) => item === b.priority);
     if (priorityA > priorityB) return -1;
     if (priorityA < priorityB) return 1;
     return 0;
   });
-  return newList;
+  return list;
 };
 
+const defineIcon = (status) => (status ? ICON.CIRCLE_ARROW : ICON.CHECK);
+
 export {
-  dateAction, useNewId, storage, sortList, filterList,
+  dateAction, sortList, filterList, defineIcon,
 };

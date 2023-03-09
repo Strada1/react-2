@@ -5,12 +5,11 @@ import { Priority } from '../priority/Priority';
 import { Wrapper } from '../wrapper/Wrapper';
 import { IconSvg } from '../../components/icon-svg/IconSvg';
 import { Button } from '../../components/button/Button';
+import { defineIcon } from '../../core/utils';
 import {
   ACTION, ICON, PRIORITY, CLASS, TASK_KEY,
 } from '../../core/constants';
 import './List.css';
-
-const defineIcon = (status) => (status ? ICON.CIRCLE_ARROW : ICON.CHECK);
 
 function List(props) {
   const {
