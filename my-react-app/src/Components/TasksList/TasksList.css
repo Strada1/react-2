@@ -51,4 +51,5 @@ input[type="checkbox"]:checked+.task-name::before {
 
 .status-done {
     background-color: #f4f4f4;
+    text-decoration: line-through;
 }
