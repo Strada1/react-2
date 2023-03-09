@@ -31,3 +31,7 @@ legend {
 ::-webkit-calendar-picker-indicator {
   background: url(../src/assets/img/date.svg);
 }
+
+.none {
+    display: none;
+}

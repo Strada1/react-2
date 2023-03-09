@@ -1,5 +1,4 @@
 import { CLASS, TASK_KEY, TYPE } from '../../../core/constants';
-import './CheckboxInput.css';
 
 function CheckboxInput({
   children, changeTask, status, id,
@@ -9,7 +8,7 @@ function CheckboxInput({
       <input
         type={TYPE.INPUT.CHECKBOX}
         name={TYPE.INPUT.CHECKBOX}
-        className={`${CLASS.INPUT}-${TYPE.INPUT.CHECKBOX}`}
+        className={`${CLASS.INPUT}-${TYPE.INPUT.CHECKBOX} ${CLASS.NONE}`}
         checked={status}
         onChange={({ target }) => changeTask(id, TASK_KEY.STATUS, target.checked)}
       />

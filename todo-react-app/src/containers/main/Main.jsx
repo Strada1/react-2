@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { dateAction, useNewId, storage } from '../../core/utils';
 import { InputError } from '../../components/input/InputError';
 import { Form } from '../../components/Form';
 import { List } from '../list/List';
+import {
+  dateAction, useNewId, storage, sortList, filterList,
+} from '../../core/utils';
 import {
   CLASS, STATUS, TASK_KEY, TITLE, VALUE,
 } from '../../core/constants';
@@ -70,7 +72,6 @@ function Main() {
     [taskList],
   );
 
-  const defineList = (value) => taskList.filter(({ status }) => status === value);
   const listProps = {
     changeTask, deleteTask, setDateError, change, openSetting,
   };
@@ -78,13 +79,13 @@ function Main() {
   const lists = [
     {
       ...listProps,
-      list: defineList(STATUS.TODO),
+      list: sortList(filterList(taskList, STATUS.TODO)),
       title: TITLE.TASKS,
       key: TITLE.TASKS,
     },
     {
       ...listProps,
-      list: defineList(STATUS.DONE),
+      list: sortList(filterList(taskList, STATUS.DONE)),
       title: TITLE.HISTORY,
       key: TITLE.HISTORY,
     },

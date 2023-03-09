@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TITLE, VALUE } from './constants';
+import { TITLE, VALUE, PRIORITY } from './constants';
 
 const useNewId = () => {
   const [id, setId] = useState(VALUE.ZERO);
@@ -53,4 +53,19 @@ const dateAction = {
   },
 };
 
-export { dateAction, useNewId, storage };
+const filterList = (list, value) => list.filter(({ status }) => status === value);
+
+const sortList = (list) => {
+  const newList = list.sort((a, b) => {
+    const priorityA = PRIORITY.findIndex((p) => p === a.priority);
+    const priorityB = PRIORITY.findIndex((p) => p === b.priority);
+    if (priorityA > priorityB) return -1;
+    if (priorityA < priorityB) return 1;
+    return 0;
+  });
+  return newList;
+};
+
+export {
+  dateAction, useNewId, storage, sortList, filterList,
+};
