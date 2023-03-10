@@ -1,16 +1,19 @@
 import Task from './Task';
 
-function List(props) {
+function List({ list, priority, changePriority, deleteTask }) {
     return (
-        <div className={props.priority + 'PriorityList'}>
-            <Task
-                key={self.crypto.randomUUID()}
-                // onValueChange={(e) => checkboxChenge(e)}
-                status="todo"
-                //inputText={props.inputText}
-                priority={props.priority}
-                title={props.inputText}
-            />
+        <div className={priority + 'PriorityList'}>
+            {list.map(({ id, title, status, priority }) => (
+                <Task
+                    key={id}
+                    id={id}
+                    title={title}
+                    status={status}
+                    priority={priority}
+                    changePriority={changePriority}
+                    deleteTask={deleteTask}
+                />
+            ))}
         </div>
     );
 }
