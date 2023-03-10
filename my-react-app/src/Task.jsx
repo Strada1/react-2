@@ -1,35 +1,29 @@
 import { useState, useEffect } from 'react';
 
-function Task({ addTask, inputText, title, status, priority }) {
-    console.log(addTask);
-
-    const [listTodo, setlistTodo] = useState([]);
-
-    function addTas(addTask) {
+function Task({ title, status, priority }) {
+    /*function addTas(addTask) {
         e.preventDefault();
-        console.log(e);
 
         const task = {
             id: self.crypto.randomUUID(),
-            title: textInput,
+            title: title,
             status: status,
             priority: priority,
         };
 
+        console.log(task);
         setlistTodo([...listTodo, task]);
-    }
+    }*/
 
-    console.log(listTodo);
-
-    const task = {
+    /*const task = {
         id: self.crypto.randomUUID(),
-        title: inputText,
+        title: title,
         status: status,
         priority: priority,
-    };
+    };*/
 
     function handleChange() {
-        props.onValueChange(task);
+        props.onValueChange();
     }
 
     return (
@@ -39,7 +33,7 @@ function Task({ addTask, inputText, title, status, priority }) {
                 className="checkbox"
                 type="checkbox"
             ></input>
-            {inputText}
+            {title}
             <button className="removalButton">X</button>
         </div>
     );
@@ -49,7 +43,7 @@ function Task({ addTask, inputText, title, status, priority }) {
     //console.log(inputText);
     const task = {
         id: self.crypto.randomUUID(),
-        title: inputText,
+        title: title,
         status: status,
         priority: priority,
     };

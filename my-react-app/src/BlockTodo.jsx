@@ -7,16 +7,17 @@ function BlockTodo(props) {
     const priority = props.priority;
     const status = 'todo';
     const [textInput, setTextIn] = useState('');
-    const [addTask, setAddTask] = useState('');
     //const [listTodo, setlistTodo] = useState([]);
-    const [formSent, setFormSent] = useState(false);
+    const [task, setTask] = useState('');
+    const [listTodo, setlistTodo] = useState([]);
+    //setlistTodo([...listTodo, task]);
 
-    function handleChange(e) {
-        props.onValueChange(e);
-    }
-
-    /*function addTask(e) {
+    function addTask(e) {
         e.preventDefault();
+
+        if (textInput === '') {
+            return;
+        }
 
         const task = {
             id: self.crypto.randomUUID(),
@@ -26,49 +27,44 @@ function BlockTodo(props) {
         };
 
         setlistTodo([...listTodo, task]);
-    }*/
+        setTask(task);
+        setTextIn('');
+    }
 
-    //console.log(listTodo);
+    function handleChange(e) {
+        props.onValueChange(listTodo);
+    }
+
+    console.log(props.localStorageDataObj);
 
     return (
         <div className={priority}>
             <h2 id="name">{props.title}</h2>
 
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    setFormSent(true);
-                    setAddTask(e);
-                    //addTask(e);
-                }}
-                className="toDoForm"
-            >
+            <form onSubmit={addTask} className="toDoForm">
                 <Header
                     onValueChange={(e) => {
-                        // handleChange(e);
+                        handleChange(e);
                         setTextIn(e);
                     }}
                     priority={priority}
                     value={textInput}
                 />
 
-                <button
-                    // onClick={(e) => setFormSent(true)}
-                    className="btnAdd"
-                    type="submit"
-                >
+                <button onClick={addTask} className="btnAdd" type="submit">
                     &#10006;
                 </button>
-                {formSent && (
-                    <List
-                        addTask={addTask}
-                        inputText={textInput}
-                        status={status}
-                        priority={priority}
-                        list={props.localStorageDataObj}
-                    />
-                )}
             </form>
+
+            {props.localStorageDataObj > 0 && (
+                <List
+                    addTask={addTask}
+                    inputText={textInput}
+                    status={status}
+                    priority={priority}
+                    list={props.localStorageDataObj}
+                />
+            )}
         </div>
     );
 }

@@ -7,10 +7,9 @@ function List(props) {
                 key={self.crypto.randomUUID()}
                 // onValueChange={(e) => checkboxChenge(e)}
                 status="todo"
-                addTask={props.addTask}
-                inputText={props.inputText}
+                //inputText={props.inputText}
                 priority={props.priority}
-                title={props.title}
+                title={props.inputText}
             />
         </div>
     );
