@@ -1,0 +1,26 @@
+.App {
+  margin: auto;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid lightblue;
+  padding: 0.5rem;
+  flex-direction: column;
+}
+
+.App input {
+  border-radius: 5px;
+  border: 0px;
+}
+
+.input_container {
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  width: 170px;
+}
+
+.container {
+  flex: 1;
+}
