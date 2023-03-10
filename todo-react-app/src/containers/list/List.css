@@ -1,0 +1,37 @@
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 60px;
+}
+
+.task {
+    width: 280px;
+}
+
+.date {
+    font-size: 14px;
+    width: 50px;
+    text-align: center;
+}
+
+.date:hover {
+    color: var(--green-color);
+    transition: 1s;
+}
+
+.task-container {
+    display: contents;
+}
+
+.task-container > .label-date {
+    padding-left: 130px
+}
+
+.task-container > .change {
+    margin-left: -280px;
+}
+
+.section-list {
+    flex-direction: column-reverse;
+}

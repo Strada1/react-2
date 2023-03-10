@@ -1,0 +1,44 @@
+@import url('./assets/css/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --bg-color-body: linear-gradient(45deg, rgb(0, 0, 0), rgb(120, 172, 213));
+    --bg-color-content: #141414;
+    --bg-color-content-item: #181818;
+    --priority-low-color: #78acd5;
+    --priority-medium-color: #fcf302;
+    --priority-high-color: #ff2460;
+    --white-color: #ffffff;
+    --green-color: #00bf72;
+    --red-color: #b61a1ae3;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 21px;
+    color: var(--white-color);
+    text-align: center;
+    background: -webkit-var(--bg-color-body);
+    background: -moz-var(--bg-color-body);
+    background: var(--bg-color-body);
+}
+
+input,
+button {
+  cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--bg-color-content-item) inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--white-color) !important;
+}

@@ -1,0 +1,5 @@
+.title {
+    padding: 50px 10px;
+    font-size: 50px;
+    color: var(--priority-low-color);
+}

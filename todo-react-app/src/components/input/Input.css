@@ -1,0 +1,9 @@
+.input-task,
+.input-date {
+    padding-left: 45px;
+}
+
+.error {
+    color: var(--priority-high-color);
+    width: 80%;
+}

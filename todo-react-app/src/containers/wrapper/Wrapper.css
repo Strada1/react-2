@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    padding: 10px 15px;
+    width: 398px;
+    min-height: 50px;
+    background: var(--bg-color-content-item);
+    border-radius: 10px;
+}
+
+.input-wrapper {
+    gap: 30px;
+}
+
+.task-wrapper {
+    gap: 10px;
+    overflow: hidden;
+    position: relative;
+    min-height: 60px;
+}
