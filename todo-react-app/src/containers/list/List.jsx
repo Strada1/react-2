@@ -25,6 +25,23 @@ function List(props) {
             id, status, priority, text, date,
           }) => (
             <li className={`${CLASS.TASK}-${CLASS.CONTAINER}`} key={id}>
+              <Wrapper prefix={CLASS.TASK}>
+                <Button {...{ option: TASK_KEY.PRIORITY, onClick: openSetting, id }}>
+                  <IconSvg {...{ icon: ICON.LIGHTNING, option: priority }} />
+                </Button>
+                <span className={CLASS.TASK}>{text}</span>
+                <div className={CLASS.OPTIONS}>
+                  <Button {...{ option: TASK_KEY.DATE, onClick: openSetting, id }}>
+                    {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
+                  </Button>
+                  <CheckboxInput {...{ changeTask, status, id }}>
+                    <IconSvg icon={defineIcon(status)} />
+                  </CheckboxInput>
+                  <Button {...{ onClick: deleteTask, id }}>
+                    <IconSvg icon={ICON.CROSS} />
+                  </Button>
+                </div>
+              </Wrapper>
               {change.date && change.taskId === id
               && (
               <DateTimeInput {...{ setDateError, changeTask, id }} />
@@ -44,23 +61,6 @@ function List(props) {
                 )}
               </Priority>
               )}
-              <Wrapper prefix={CLASS.TASK}>
-                <Button {...{ option: TASK_KEY.PRIORITY, onClick: openSetting, id }}>
-                  <IconSvg {...{ icon: ICON.LIGHTNING, option: priority }} />
-                </Button>
-                <span className={CLASS.TASK}>{text}</span>
-                <div className={CLASS.OPTIONS}>
-                  <Button {...{ option: TASK_KEY.DATE, onClick: openSetting, id }}>
-                    {!date ? <IconSvg icon={ICON.CALENDAR} /> : date}
-                  </Button>
-                  <CheckboxInput {...{ changeTask, status, id }}>
-                    <IconSvg icon={defineIcon(status)} />
-                  </CheckboxInput>
-                  <Button {...{ onClick: deleteTask, id }}>
-                    <IconSvg icon={ICON.CROSS} />
-                  </Button>
-                </div>
-              </Wrapper>
             </li>
           ),
         )}

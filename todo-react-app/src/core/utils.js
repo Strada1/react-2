@@ -30,8 +30,8 @@ const sortList = (list) => {
   list.sort((a, b) => {
     const priorityA = PRIORITY.findIndex((item) => item === a.priority);
     const priorityB = PRIORITY.findIndex((item) => item === b.priority);
-    if (priorityA > priorityB) return -1;
-    if (priorityA < priorityB) return 1;
+    if (priorityA < priorityB) return -1;
+    if (priorityA > priorityB) return 1;
     return 0;
   });
   return list;

@@ -6,7 +6,7 @@ import { CLASS } from '../../core/constants';
 import './Main.css';
 
 function Main() {
-  const [handleSubmit, control, lists] = useTodoList();
+  const { handleSubmit, control, lists } = useTodoList();
 
   return (
     <main className={CLASS.MAIN}>

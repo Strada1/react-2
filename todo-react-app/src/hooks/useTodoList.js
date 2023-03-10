@@ -12,10 +12,6 @@ const useTodoList = () => {
   const [change, setChange] = useState({ priority: false, date: false });
   const [id, incrementId] = useNewId();
 
-  const updateList = (newList) => {
-    setList(newList);
-  };
-
   const addTask = (text, date, priority) => {
     const newTask = {
       id,
@@ -24,13 +20,13 @@ const useTodoList = () => {
       status: STATUS.TODO,
       date: !date ? VALUE.DEFAULT : dateAction.convert(date),
     };
-    const newTaskList = [newTask, ...list];
-    updateList(newTaskList);
+    const newTaskList = [...list, newTask];
+    setList(newTaskList);
   };
 
   const deleteTask = (taskId) => {
     const newTaskList = list.filter((item) => item.id !== taskId);
-    updateList(newTaskList);
+    setList(newTaskList);
   };
 
   const handleSubmit = (event) => {
@@ -55,7 +51,12 @@ const useTodoList = () => {
   const changeTask = (taskId, value, newValue) => {
     const newTaskList = list.map((item) => (
       item.id === taskId ? { ...item, [value]: newValue } : item));
-    updateList(newTaskList);
+    const handler = setTimeout(() => {
+      setList(newTaskList);
+    }, 500);
+    return () => {
+      clearTimeout(handler);
+    };
   };
 
   useEffect(
@@ -90,7 +91,7 @@ const useTodoList = () => {
     return filteredLists;
   };
 
-  return [handleSubmit, control, defineLists()];
+  return { handleSubmit, control, lists: defineLists() };
 };
 
 export { useTodoList };

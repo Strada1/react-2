@@ -31,3 +31,7 @@
 .task-container > .change {
     margin-left: -280px;
 }
+
+.section-list {
+    flex-direction: column-reverse;
+}
