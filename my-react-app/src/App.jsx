@@ -7,30 +7,22 @@ const todoBlocks = [
     { priority: 'low', title: 'LOW' },
 ];
 
+export const defaultValue = '';
 const tasks = 'tasks';
-const defaultValue = '';
+const isDone = false;
 
 function App() {
     const dataLs = localStorage.getItem(tasks);
     const listLs = JSON.parse(dataLs);
 
     const [listTodo, setListTodo] = useState(listLs || []);
-    //const [checkedPriority, setCheckedPriority] = useState(false);
 
-    function searchTaskById(id) {
-        const taskID = listTodo.find((item) => item.id === id);
-        //const taskNumber = listTodo.indexOf(taskID, 0);
-        return taskID;
-    }
-
-    function changePriority(id, status) {
+    function changePriority(id, isDone) {
         const newList = listLs.map((item) =>
-            item.id === id ? { ...item, status: status ? false : true } : item
+            item.id === id ? { ...item, isDone: isDone ? false : true } : item
         );
-        console.log(newList);
         setListTodo(newList);
     }
-    console.log(listTodo);
 
     function deleteTask(id) {
         const idTask = id;
@@ -38,7 +30,7 @@ function App() {
         setListTodo(newList);
     }
 
-    function addTask(e, textInput, status, priority) {
+    function addTask(e, textInput, isDone, priority) {
         e.preventDefault();
         const checkRepeat = listTodo.find((item) => item.title === textInput);
 
@@ -49,17 +41,13 @@ function App() {
         const task = {
             id: self.crypto.randomUUID(),
             title: textInput,
-            status: status,
+            isDone: isDone,
             priority: priority,
         };
 
         setListTodo([...listTodo, task]);
     }
-
-    setLocalStorage(listTodo);
-
-    // setLocalStorage(listTodo);
-    //localStorage.setItem(tasks, JSON.stringify(listTodo));
+    localStorage.setItem(tasks, JSON.stringify(listTodo));
 
     return (
         <div className="containerTodo">
@@ -71,6 +59,7 @@ function App() {
                         priority={priority}
                         addTask={addTask}
                         list={listLs}
+                        isDone={isDone}
                         changePriority={changePriority}
                         deleteTask={deleteTask}
                     />
@@ -78,10 +67,6 @@ function App() {
             </div>
         </div>
     );
-}
-
-function setLocalStorage(listTodo) {
-    localStorage.setItem(tasks, JSON.stringify(listTodo));
 }
 
 export default App;

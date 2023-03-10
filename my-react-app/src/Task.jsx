@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-
-function Task({ id, title, status, priority, changePriority, deleteTask }) {
+function Task(props) {
+    const { id, title, isDone, changePriority, deleteTask } = props;
     return (
         <div className="task">
             <input
-                checked={status === true ? false : true}
-                onChange={(e) => changePriority(id, status)}
+                checked={isDone === true ? true : false}
+                onChange={(e) => changePriority(id, isDone)}
                 className="checkbox"
                 type="checkbox"
             ></input>

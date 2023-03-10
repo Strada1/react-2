@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './Header';
 import List from './List';
-
-const status = false;
+import { defaultValue } from './App';
 
 function BlockTodo(props) {
-    const priority = props.priority;
-    const list = props.list;
-    const changePriority = props.changePriority;
-    const deleteTask = props.deleteTask;
-
-    const [textInput, setTextIn] = useState('');
+    const { priority, isDone, title, list, changePriority, deleteTask } = props;
+    const [textInput, setTextIn] = useState(defaultValue);
 
     const listPart = list.filter((item) => item.priority === priority);
 
     return (
         <div className={priority}>
-            <h2 id="name">{props.title}</h2>
+            <h2 id="name">{title}</h2>
 
             <form
                 onSubmit={(e) => {
-                    props.addTask(e, textInput, status, priority);
-                    setTextIn('');
+                    props.addTask(e, textInput, isDone, priority);
+                    setTextIn(defaultValue);
                 }}
                 className="toDoForm"
             >
