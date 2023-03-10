@@ -1,78 +1,76 @@
 import { useState, useEffect } from 'react';
 import Header from './Header';
 import List from './List';
-
-const defaultValue = '';
-//localStorage.clear();
+import addTask from './Task';
 
 function BlockTodo(props) {
-    const localStorageData = localStorage.getItem(`${props.priority}Tasks`);
+    const priority = props.priority;
+    const status = 'todo';
+    const [textInput, setTextIn] = useState('');
+    const [addTask, setAddTask] = useState('');
+    //const [listTodo, setlistTodo] = useState([]);
+    const [formSent, setFormSent] = useState(false);
 
-    if (!localStorageData) {
-        localStorage.setItem(`${props.priority}Tasks`, []);
-    }
-    const localStorageDataObj = JSON.parse(localStorageData);
-
-    const [list, setTaskInList] = useState([]);
-    const [inputText, setInputText] = useState(defaultValue);
-    const [buttonOn, setButtonOn] = useState(false);
-
-    if (localStorageDataObj) {
-        console.log(localStorageDataObj);
+    function handleChange(e) {
+        props.onValueChange(e);
     }
 
-    function addTask(e) {
+    /*function addTask(e) {
         e.preventDefault();
 
-        const taskInTheList = list.find((item) => item.title === inputText);
-        if (taskInTheList) {
-            console.log(taskInTheList);
-            return;
-        }
+        const task = {
+            id: self.crypto.randomUUID(),
+            title: textInput,
+            status: status,
+            priority: priority,
+        };
 
-        const task = creatTask(e, inputText);
-        setTaskInList((list) => [...list, task]);
-    }
+        setlistTodo([...listTodo, task]);
+    }*/
 
-    localStorage.setItem(`${props.priority}Tasks`, JSON.stringify(list));
-
-    useEffect(() => {
-        setButtonOn(true);
-    });
+    //console.log(listTodo);
 
     return (
-        <div className={props.priority}>
+        <div className={priority}>
             <h2 id="name">{props.title}</h2>
-            <form onSubmit={addTask} className="toDoForm">
+
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    setFormSent(true);
+                    setAddTask(e);
+                    //addTask(e);
+                }}
+                className="toDoForm"
+            >
                 <Header
-                    onValueChange={(e) => setInputText(e)}
-                    value={inputText}
+                    onValueChange={(e) => {
+                        // handleChange(e);
+                        setTextIn(e);
+                    }}
+                    priority={priority}
+                    value={textInput}
                 />
-                <button className="btnAdd" type="submit">
+
+                <button
+                    // onClick={(e) => setFormSent(true)}
+                    className="btnAdd"
+                    type="submit"
+                >
                     &#10006;
                 </button>
+                {formSent && (
+                    <List
+                        addTask={addTask}
+                        inputText={textInput}
+                        status={status}
+                        priority={priority}
+                        list={props.localStorageDataObj}
+                    />
+                )}
             </form>
-
-            {buttonOn && (
-                <List
-                    priority={props.priority}
-                    dataTasks={[localStorageDataObj]}
-                />
-            )}
         </div>
     );
-}
-
-function creatTask(e, inputText) {
-    const priority = e.target.closest('.low');
-    const checkPriority = priority ? 'low' : 'high';
-
-    const task = {
-        title: inputText,
-        status: 'todo',
-        priority: checkPriority,
-    };
-    return task;
 }
 
 export default BlockTodo;

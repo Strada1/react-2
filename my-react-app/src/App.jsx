@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import BlockTodo from './BlockTodo';
+//import { creatTask } from './Task';
 import './App.css';
 
 const todoBlocks = [
@@ -7,12 +8,24 @@ const todoBlocks = [
     { priority: 'low', title: 'LOW' },
 ];
 
+const defaultValue = '';
+
 function App() {
+    //const [inputText, setInputText] = useState(defaultValue);
+
+    const localStorageData = localStorage.getItem('tasks');
+    const localStorageDataObj = JSON.parse(localStorageData) ?? [];
+
     const taskBlok = todoBlocks.map(({ priority, title }) => (
         <BlockTodo
-            key={priority.toString()}
-            priority={priority}
+            key={priority}
             title={title}
+            priority={priority}
+            // inputText={inputText}
+            localStorageDataObj={localStorageDataObj}
+            /*onValueChange={(text) => {
+                setInputText(text);
+            }}*/
         />
     ));
 
