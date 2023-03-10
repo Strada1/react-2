@@ -15,11 +15,9 @@ function App() {
     const listLs = JSON.parse(dataLs);
 
     const [listTodo, setListTodo] = useState(listLs || []);
-    //const [checkedPriority, setCheckedPriority] = useState(false);
 
     function searchTaskById(id) {
         const taskID = listTodo.find((item) => item.id === id);
-        //const taskNumber = listTodo.indexOf(taskID, 0);
         return taskID;
     }
 
@@ -32,7 +30,6 @@ function App() {
                 item.status = item.status === 'todo' ? 'done' : 'false';
             }
         });
-        //setListTodo(newList);
 
         setLocalStorage(newList);
     }
@@ -40,11 +37,8 @@ function App() {
     function deleteTask(id) {
         const idTask = id;
         const newList = listLs.filter((item) => item.id !== idTask);
-        //setListTodo(newList);
         setLocalStorage(newList);
     }
-
-    //console.log(checkedPriority);
 
     function addTask(e, textInput, status, priority) {
         e.preventDefault();
@@ -64,7 +58,6 @@ function App() {
         setListTodo([...listTodo, task]);
     }
 
-    // Обновляем заголовок документа с помощью API браузера
     setLocalStorage(listTodo);
 
     // setLocalStorage(listTodo);

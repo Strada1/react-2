@@ -9,10 +9,11 @@ function BlockTodo(props) {
     const list = props.list;
     const changePriority = props.changePriority;
     const deleteTask = props.deleteTask;
+
     const [textInput, setTextIn] = useState('');
 
     const listPart = list.filter((item) => item.priority === priority);
-    console.log(listPart);
+
     return (
         <div className={priority}>
             <h2 id="name">{props.title}</h2>
