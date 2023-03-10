@@ -15,29 +15,27 @@ function App() {
     const listLs = JSON.parse(dataLs);
 
     const [listTodo, setListTodo] = useState(listLs || []);
+    //const [checkedPriority, setCheckedPriority] = useState(false);
 
     function searchTaskById(id) {
         const taskID = listTodo.find((item) => item.id === id);
+        //const taskNumber = listTodo.indexOf(taskID, 0);
         return taskID;
     }
 
-    function changePriority(id) {
-        const idTask = searchTaskById(id);
-
-        const newList = listLs.map((item) => {
-            if (item.id === idTask) {
-                console.log(item.status);
-                item.status = item.status === 'todo' ? 'done' : 'false';
-            }
-        });
-
-        setLocalStorage(newList);
+    function changePriority(id, status) {
+        const newList = listLs.map((item) =>
+            item.id === id ? { ...item, status: status ? false : true } : item
+        );
+        console.log(newList);
+        setListTodo(newList);
     }
+    console.log(listTodo);
 
     function deleteTask(id) {
         const idTask = id;
         const newList = listLs.filter((item) => item.id !== idTask);
-        setLocalStorage(newList);
+        setListTodo(newList);
     }
 
     function addTask(e, textInput, status, priority) {

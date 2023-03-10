@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from './Header';
 import List from './List';
 
-const status = 'todo';
+const status = false;
 
 function BlockTodo(props) {
     const priority = props.priority;
