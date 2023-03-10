@@ -11,7 +11,7 @@ const todoBlocks = [
 const defaultValue = '';
 
 function App() {
-    const [task, setTask] = useState([]);
+    const [task, setTask] = useState('');
     const [listTodo, setlistTodo] = useState([]);
     const localStorageData = localStorage.getItem('tasks');
     const localStorageDataObj = JSON.parse(localStorageData) ?? [];
@@ -21,8 +21,6 @@ function App() {
     /* 
         setlistTodo([...listTodo, task]);
     */
-
-    console.log(listTodo);
 
     return (
         <div className="containerTodo">
@@ -35,7 +33,7 @@ function App() {
                         // inputText={inputText}
                         localStorageDataObj={localStorageDataObj}
                         onValueChange={(text) => {
-                            setTask([...task, text]);
+                            setTask([text]);
                         }}
                     />
                 ))}

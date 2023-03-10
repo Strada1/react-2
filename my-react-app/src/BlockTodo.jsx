@@ -26,16 +26,14 @@ function BlockTodo(props) {
             priority: priority,
         };
 
-        setlistTodo([...listTodo, task]);
+        //setlistTodo([...listTodo, task]);
         setTask(task);
         setTextIn('');
     }
 
     function handleChange(e) {
-        props.onValueChange(listTodo);
+        props.onValueChange(task);
     }
-
-    console.log(props.localStorageDataObj);
 
     return (
         <div className={priority}>

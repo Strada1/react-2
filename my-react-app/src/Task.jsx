@@ -11,7 +11,6 @@ function Task({ title, status, priority }) {
             priority: priority,
         };
 
-        console.log(task);
         setlistTodo([...listTodo, task]);
     }*/
 
@@ -40,7 +39,6 @@ function Task({ title, status, priority }) {
 }
 
 /*export function creatTask(inputText, priority, status) {
-    //console.log(inputText);
     const task = {
         id: self.crypto.randomUUID(),
         title: title,
