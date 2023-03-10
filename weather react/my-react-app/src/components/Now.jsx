@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import ChosenCity from "./ChosenCity/ChosenCity";
 
-function Now({CurrentCity, Json, handlerAdd, cities, handlerDelete}){
-
+function Now({CurrentCity, Json, handlerAdd, cities, handlerDelete, handleSubmit}){
 
     return(
         <div id="1" className="now weather__tab -active">
@@ -14,9 +14,13 @@ function Now({CurrentCity, Json, handlerAdd, cities, handlerDelete}){
        
     </div>
     <div className="city" id="city">
-       <ChosenCity Json={Json} CurrentCity={CurrentCity}/>
+       <ChosenCity Json={Json} CurrentCity={CurrentCity} handleSubmit={handleSubmit}/>
         
-        <svg onClick={() => cities.find(elem => elem.name === Json.name) ? handlerDelete(CurrentCity) : handlerAdd(CurrentCity) } className="like" id="like" width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+        <svg onClick={() => cities.find(elem => elem.name === Json.name)
+             ? handlerDelete(CurrentCity)
+              : handlerAdd(CurrentCity)
+               } 
+               className="like" id="like" width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
         <g>
             <title>Layer 1</title>
             <g id="layer1">
