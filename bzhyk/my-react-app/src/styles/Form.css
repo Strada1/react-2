@@ -1,0 +1,28 @@
+.container__searchTown{
+    border: 1px solid;
+    width: 606px;
+    height: 45px;
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+}
+
+.container__searchTown__input{
+    border: 0px;
+    width: 540px;
+    height: 25px;
+    margin: 10px 0px 0px 10px;
+    font-size: 24px;
+    font-family: 'Roboto';
+    background: rgba(160, 102, 186, 0.01);
+    outline: none;
+}
+
+.container__searchTown__searchButton{
+    margin: 10px 0px 0px 5px;
+    height: 25px;
+    width: 25px;
+}
+
+.container__searchTown__searchButton:hover{
+    transform: scale(1.2);
+}

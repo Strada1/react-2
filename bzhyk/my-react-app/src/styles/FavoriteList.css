@@ -1,0 +1,51 @@
+.container__add{
+    border: 1px solid;
+    width: 303px;
+    height: 60px;
+
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+}
+
+.container__add__text{
+    font-size: 24px;
+    font-family: 'Roboto';
+    padding: 3px 0px 0px 15px;
+}
+
+.container__list{
+    border: 1px solid;
+    width: 303px;
+    height: 330px;
+    grid-column: 4 / 5;
+    grid-row: 3 / 5;
+}
+
+.container__listTown{
+    font-size: 24px;
+    font-family: 'Roboto';
+    list-style-type: none;
+    padding: 10px 0px 0px 15px;
+    max-width: 270px;
+}
+
+.container__listTown__button{
+    background: none;
+    border: none;
+    opacity: 0.85;
+
+
+    width: 12px;
+    height: 12px;
+    position: relative;
+    top: -7px;
+    left: 3px;
+}
+
+.container__listTown__li{
+    padding: 0px 0px 20px 0px;
+}
+
+.container__listTown__button:hover{
+    transform: scale(1.2)
+}

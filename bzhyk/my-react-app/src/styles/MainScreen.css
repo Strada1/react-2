@@ -1,0 +1,188 @@
+
+
+.container__info{
+    border: 1px solid;
+    /*width: 297px;*/
+    width: 301px;
+    height: 346px;
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+    /*background: #A65000;*/
+}
+
+.container__info__temperature{
+    font-size: 70px;
+    font-family: 'Roboto';
+    margin: 20px 0px 0px 20px;
+    padding: 0px 0px 0px 0px;
+}
+
+.container__info__sign{
+    /*margin: 30px 0px 0px 115px;*/
+    padding-left: 100px;
+    padding-bottom: 60px;
+    margin: 20px 0px 0px 0px;
+    width: 110px;
+    height: 110px;
+}
+
+.container__info__block{
+    display: grid;
+    padding: 20px 0px 0px 260px;
+}
+
+.container__info__heath{
+    /*margin: 0px 0px 0px 0px;*/
+    /*padding: 116px 0px 0px 260px;*/
+    max-width: 25px;
+    max-height: 25px;
+    width: 24px;
+    height: 25px;
+}
+
+.container__info__heath:hover{
+
+    background: url("files/hearth2_2.svg") no-repeat;
+}
+
+.container__info__town{
+    font-size: 24px;
+    font-family: 'Roboto';
+    margin-top: -25px;
+    margin-left: 10px;
+}
+
+
+
+.container__info__2{
+    border: 1px solid;
+    /*width: 297px;*/
+    width: 301px;
+    height: 346px;
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+}
+
+.container__info__town__2{
+    font-size: 24px;
+    font-family: 'Roboto';
+    padding: 5px 0px 0px 10px;
+}
+
+.container__info__2__list{
+    list-style-type: none;
+    font-size: 24px;
+    font-family: 'Roboto';
+    padding: 0px 0px 0px 10px;
+}
+
+.item{
+    padding: 0px 0px 20px 0px;
+}
+
+.container__info__3{
+    border: 1px solid;
+
+    overflow-y: auto;
+    /*width: 297px;*/
+    width: 301px;
+    height: 346px;
+
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+}
+
+.container__info__3::-webkit-scrollbar{
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container__info__3::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+.container__info__town__3{
+    font-size: 24px;
+    font-family: 'Roboto';
+    padding: 5px 0px 0px 10px;
+    list-style-type: none;
+}
+
+.container__info__3__card{
+    border: 1px solid;
+    height: 120px;
+    width: 265px;
+    margin: 0px 0px 0px 10px;
+    padding: 0px 0px 0px 0px;
+    display: grid;
+}
+
+.container__info__3__card__date{
+    font-size: 18px;
+    font-family: 'Roboto';
+    grid-column: 1/2;
+    grid-row: 1/2;
+    padding: 0px 0px 0px 10px;
+    margin: 10px 0px 0px 0px;
+}
+
+
+.container__info__3__card__temperature{
+    font-size: 18px;
+    font-family: 'Roboto';
+    grid-column: 1/3;
+    grid-row: 2/3;
+    padding: 0px 0px 0px 10px;
+    margin: 15px 0px 0px 0px;
+
+}
+
+.container__info__3__card__time{
+    font-size: 18px;
+    font-family: 'Roboto';
+    grid-column: 3/4;
+    grid-row: 1/2;
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.container__info__3__card__weather{
+    font-size: 18px;
+    font-family: 'Roboto';
+    grid-column: 3/4;
+    grid-row: 2/3;
+    padding: 0px 0px 0px 40px;
+    margin: 15px 0px 0px 0px;
+}
+
+
+.bloc-tabs {
+    display: flex;
+}
+
+.tabs{
+    border: 1px solid;
+    width: 99px;
+    height: 44px;
+    display: inline-grid;
+    font-size: 20px;
+    font-family: 'Roboto';
+    justify-content: center;
+    align-content: center;
+}
+
+.active-tabs{
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px rgba(0, 0, 0) solid;
+    color: rgba(250, 250, 235, 0.99);
+}
+
+.content {
+    display: none;
+}
+
+.active-content{
+    display: block;
+}

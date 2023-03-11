@@ -1,0 +1,24 @@
+body{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    background: #fff5ee;
+}
+
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 500px;
+    width: 700px;
+    padding: 50px 0px 0px 0px;
+    border-radius: 10%;
+}
+
+.container{
+    height: 435px;
+    width: 607px;
+    display: grid;
+    justify-content: center;
+}
