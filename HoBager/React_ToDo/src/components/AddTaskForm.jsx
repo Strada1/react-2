@@ -1,35 +1,39 @@
 import React, { useState } from "react";
+import { DEFAULT_INPUT_VALUE,STATUSES } from "../consts";
+import storage from "../storage";
 
-const AddTaskForm = (props) => {
-    const [value, setValue] = useState('');
 
-    function changeHandler(e) {
-        setValue(e.target.value);
+const AddTaskForm = ({ setList, priority }) => {
+    const [value, setValue] = useState(DEFAULT_INPUT_VALUE);
+
+    function changeHandler(event) {
+        setValue(event.target.value);
     }
 
-    function createTask(value) {
-        return { id: Date.now(), name: value, priority: props.priority, status: '' }
+    function createTask(name) {
+        return { id: Date.now(), name, priority, status: STATUSES.DEFAULT }
     }
 
-    function submitHandler(e) {
-        e.preventDefault();
+    function submitHandler(event) {
+        event.preventDefault();
 
         if (value) {
-            props.listControl((prev) => {
-                const newList = [...prev, createTask(value)];
+            setList((oldList) => {
+                const newList = [...oldList, createTask(value)];
+                storage.save(newList);
 
                 return newList
             });
         }
-        setValue('');
+        setValue(DEFAULT_INPUT_VALUE);
     }
 
     return (
-        <form onSubmit={submitHandler} className={props.priority + "__add add"}>
+        <form onSubmit={submitHandler} className={priority + "__add add"}>
             <input
                 onChange={changeHandler}
                 value={value} type="text"
-                className={props.priority + "__input input-add"} />
+                className={priority + "__input input-add"} />
             <input type="submit" className="newTask" value="+" />
         </form>
 

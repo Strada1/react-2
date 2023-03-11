@@ -1,15 +1,18 @@
 import React from "react";
 import Task from "./Task";
 
-const TaskList = (props) => {
+const TaskList = ({ setList, list, priority }) => {
 
-    const list = props.list.map((task) => (
-        <Task key={task.id} control={props.listControl} body={task} />
+    const tasks = list.map((task) => (
+        <Task key={task.id} setList={setList} body={task} />
     ));
 
     return (
-        <div className={props.priority + "__tasks tasks"}>
-            {list}
+        <div className={priority + "__tasks tasks"}>
+            {tasks.length === 0
+                ? <h2 className="empty">{`Нет задач`}</h2>
+                : tasks
+            }
         </div>
     )
 }

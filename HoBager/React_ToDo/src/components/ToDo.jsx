@@ -1,36 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PriorityBlock from "./PriorityBlock";
-import storage from "./storage";
+import storage from "../storage";
 
 
 
 const ToDo = () => {
 
-    const PRIORITY = {
-        HIGH : "highPriority",
-        LOW : "lowPriority",
-    }
+    const PRIORITIES = [
+        { priority: "highPriority", title: "HIGH", },
+        { priority: "lowPriority", title: "LOW", }
+    ];
 
     const [list, setList] = useState(storage.get());
 
-    useEffect(() => {
-        storage.save(list);
-    },[list])
-
     return (
         <div className="Todo">
-            <PriorityBlock 
-                listControl={setList} 
-                list = {list} 
-                priority = {PRIORITY.HIGH} 
-                title = "HIGH" 
-            />
-            <PriorityBlock 
-                listControl={setList} 
-                list = {list} 
-                priority = {PRIORITY.LOW} 
-                title = "LOW" 
-            />
+            {PRIORITIES.map(({ priority, title }) => {
+                return (
+                    <PriorityBlock
+                        key={title}
+                        setList={setList}
+                        list={list}
+                        priority={priority}
+                        title={title}
+                    />)
+            })
+            }
         </div>
     )
 }

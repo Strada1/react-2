@@ -3,7 +3,7 @@ import { LIST_KEY } from "./consts"
 const storage = {
     get() {
         try{
-            return JSON.parse(localStorage.getItem(LIST_KEY)) || []
+            return JSON.parse(localStorage.getItem(LIST_KEY)) ?? []
         }catch(error){
             console.log(error);
             return [];
