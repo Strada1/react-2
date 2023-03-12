@@ -15,6 +15,7 @@ export function HighList({todos, deleteTodo, statusChange}) {
                         task={item.name}
                         deleteTask={()=> deleteTodo(item.id)}
                         changeStatus={()=> statusChange(item.id)}
+                        checked={item.checked}
                         />
                     </li> : <></>
                 ))}
@@ -40,6 +41,7 @@ export function LowList({todos, deleteTodo, statusChange}) {
                         task={item.name}
                         deleteTask={()=> deleteTodo(item.id)}
                         changeStatus={()=> statusChange(item.id)}
+                        checked={item.checked}
                         />
                     </li> : <></>
                 ))}
