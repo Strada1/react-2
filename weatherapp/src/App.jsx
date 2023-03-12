@@ -4,19 +4,19 @@ import Input from "./Components/Input";
 import WeatherBlock from "./Components/WeatherBlock";
 import { API_KEY, API_URL } from "./const";
 import axios from "axios";
-import FavCities from "./Components/FavCities";
+import FavoriteCities from "./Components/FavoriteCities";
+import Blocks from "./Components/Blocks";
 
 function App() {
   const [cityName, setCityName] = useState("");
   const [weather, setWeather] = useState(null);
-  const [favCities, setFavCities] = useState([]);
+  const [favoriteCities, setFavoriteCities] = useState([]);
+  const [selectedId, setSelectedId] = useState(0);
   const handleChangeInput = async (e) => {
-    console.log(cityName);
     setCityName(e.target.value);
   };
   const handleSubmit = async (e, city) => {
     if (city.length === 0) return;
-    console.log(city);
     try {
       const urlToCall = `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`;
       e.preventDefault();
@@ -28,13 +28,15 @@ function App() {
       city === cityName ? setCityName("") : setCityName(city);
     }
   };
-  const addToFav = () => {
-    if (favCities.length && favCities.some((city) => city == cityName))
+  const addToFavorite = () => {
+    if (
+      favoriteCities.length &&
+      favoriteCities.some((city) => city == cityName)
+    )
       return alert("Already in list");
-    setFavCities((prev) => [...prev, weather.name]);
+    setFavoriteCities((prev) => [...prev, weather.name]);
   };
-  const callFromFav = (e) => {
-    console.log(e.target);
+  const handleClickOnFavoriteCity = (e) => {
     handleSubmit(e, e.target.textContent);
   };
 
@@ -50,12 +52,23 @@ function App() {
           />
         </form>
       </div>
-      {weather && <WeatherBlock weatherData={weather} handleFav={addToFav} />}
-
-      {favCities.length > 0 && (
+      {weather && (
+        <WeatherBlock weatherData={weather} handleFav={addToFavorite} />
+      )}
+      {
+        <Blocks
+          selectedId={selectedId}
+          setSelectedId={setSelectedId}
+          weatherInfo={weather}
+        />
+      }
+      {favoriteCities.length > 0 && (
         <>
           <h3>Liked cities:</h3>
-          <FavCities cities={favCities} handleApiCall={callFromFav} />
+          <FavoriteCities
+            cities={favoriteCities}
+            handleApiCall={handleClickOnFavoriteCity}
+          />
         </>
       )}
     </div>

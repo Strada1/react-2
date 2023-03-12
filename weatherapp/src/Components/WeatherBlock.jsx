@@ -1,6 +1,6 @@
 import React from "react";
 
-const WeatherBlock = ({ weatherData, handleFav, isAdded }) => {
+const WeatherBlock = ({ weatherData, handleFav }) => {
   const { main, weather, name } = weatherData;
 
   return (
@@ -8,15 +8,6 @@ const WeatherBlock = ({ weatherData, handleFav, isAdded }) => {
       <div>{name}</div>
       <div>
         <span>Feels like: {main.feels_like}</span>
-      </div>
-      <div>
-        <span>Temperature: {main.temp}</span>
-      </div>
-      <div>
-        <span>Max temperature: {main.temp_max}</span>
-      </div>
-      <div>
-        <span>Min temperature: {main.temp_min}</span>
       </div>
       <div>
         <span>Overall description: {weather[0].description}</span>
