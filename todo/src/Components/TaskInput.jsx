@@ -1,15 +1,18 @@
 import React from 'react'
 
-export function TaskHighInput({highInputValue, setHighValue, getTask}) {
+export function TaskInput({InputValue, setValue, getTask}) {
     return (
         <div>
             <form onSubmit= {getTask}>
             <input
-            value={highInputValue}
+            value={InputValue}
             type='text'
-            onChange={(e)=> {setHighValue(e.target.value)}}
+            onChange={(e)=> {setValue(e.target.value)}}
             placeholder='Type important todo task'/>
             </form>
         </div>
     )
 }
+
+
+
