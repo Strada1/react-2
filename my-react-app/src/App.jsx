@@ -1,32 +1,25 @@
 import { useState, useEffect } from 'react';
-import BlockTodo from './BlockTodo';
+import BlockTodo from './components/BlockTodo';
+import { defaultValue, todoBlocks, tasks, isDone } from './constants';
 import './App.css';
 
-const todoBlocks = [
-    { priority: 'high', title: 'HIGH' },
-    { priority: 'low', title: 'LOW' },
-];
-
-export const defaultValue = '';
-const tasks = 'tasks';
-const isDone = false;
-
 function App() {
-    const dataLs = localStorage.getItem(tasks);
-    const listLs = JSON.parse(dataLs);
+    const [listTodo, setListTodo] = useState(
+        JSON.parse(localStorage.getItem(tasks)) || []
+    );
 
-    const [listTodo, setListTodo] = useState(listLs || []);
+    const [click, setClick] = useState(false);
 
     function changePriority(id, isDone) {
-        const newList = listLs.map((item) =>
-            item.id === id ? { ...item, isDone: isDone ? false : true } : item
+        const newList = listTodo.map((item) =>
+            item.id === id ? { ...item, isDone: !isDone } : item
         );
         setListTodo(newList);
     }
 
     function deleteTask(id) {
         const idTask = id;
-        const newList = listLs.filter((item) => item.id !== idTask);
+        const newList = listTodo.filter((item) => item.id !== idTask);
         setListTodo(newList);
     }
 
@@ -45,9 +38,13 @@ function App() {
             priority: priority,
         };
 
-        setListTodo([...listTodo, task]);
+        setListTodo((listTodo) => [...listTodo, task]);
+        setClick(click === false ? true : false);
     }
-    localStorage.setItem(tasks, JSON.stringify(listTodo));
+
+    useEffect(() => {
+        localStorage.setItem(tasks, JSON.stringify(listTodo));
+    }, [listTodo]);
 
     return (
         <div className="containerTodo">
@@ -58,7 +55,7 @@ function App() {
                         title={title}
                         priority={priority}
                         addTask={addTask}
-                        list={listLs}
+                        list={listTodo}
                         isDone={isDone}
                         changePriority={changePriority}
                         deleteTask={deleteTask}

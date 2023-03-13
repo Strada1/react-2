@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import Header from './Header';
 import List from './List';
-import { defaultValue } from './App';
+import { defaultValue, PRIORITY } from '../constants';
 
 function BlockTodo(props) {
-    const { priority, isDone, title, list, changePriority, deleteTask } = props;
-    const [textInput, setTextIn] = useState(defaultValue);
+    const {
+        priority,
+        isDone,
+        title,
+        list,
+        changePriority,
+        deleteTask,
+        addTask,
+    } = props;
+
+    const [textInput, setTextInput] = useState(defaultValue);
 
     const listPart = list.filter((item) => item.priority === priority);
+    const checkPriority =
+        priority === PRIORITY.HIGH || priority === PRIORITY.LOW;
 
     return (
         <div className={priority}>
@@ -15,14 +26,14 @@ function BlockTodo(props) {
 
             <form
                 onSubmit={(e) => {
-                    props.addTask(e, textInput, isDone, priority);
-                    setTextIn(defaultValue);
+                    addTask(e, textInput, isDone, priority);
+                    setTextInput(defaultValue);
                 }}
                 className="toDoForm"
             >
                 <Header
                     onValueChange={(e) => {
-                        setTextIn(e);
+                        setTextInput(e);
                     }}
                     value={textInput}
                 />
@@ -32,7 +43,7 @@ function BlockTodo(props) {
                 </button>
             </form>
 
-            {(priority === 'high' || priority === 'low') && (
+            {checkPriority && (
                 <List
                     list={listPart}
                     priority={priority}

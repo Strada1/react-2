@@ -3,7 +3,7 @@ function Task(props) {
     return (
         <div className="task">
             <input
-                checked={isDone === true ? true : false}
+                checked={isDone}
                 onChange={(e) => changePriority(id, isDone)}
                 className="checkbox"
                 type="checkbox"

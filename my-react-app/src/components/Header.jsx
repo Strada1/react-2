@@ -1,12 +1,12 @@
-function Header(props) {
+function Header({ onValueChange, value }) {
     function handleChange(e) {
-        props.onValueChange(e.target.value);
+        onValueChange(e.target.value);
     }
 
     return (
         <input
             onChange={handleChange}
-            value={props.value}
+            value={value}
             type="text"
             className="inputAddTask"
             placeholder="Добавить важные делa"
